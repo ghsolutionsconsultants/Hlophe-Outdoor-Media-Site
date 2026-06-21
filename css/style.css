@@ -317,18 +317,20 @@ section { position: relative; z-index: 1; }
   box-shadow: 0 4px 32px rgba(0,0,0,0.40);
 }
 
-.nav-brand { display: flex; align-items: center; gap: 10px; }
-.nav-brand img { height: 38px; width: auto; }
+.nav-brand { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.nav-brand img { height: 38px; width: auto; flex-shrink: 0; }
 .nav-brand-text {
-  display: flex; flex-direction: column; line-height: 1.1;
+  display: flex; flex-direction: column; line-height: 1.1; min-width: 0;
 }
 .nav-brand-name {
   font-family: 'Syne', sans-serif; font-size: 0.95rem; font-weight: 800;
   letter-spacing: 0.04em; color: var(--t1);
+  white-space: nowrap;
 }
 .nav-brand-sub {
   font-size: 0.62rem; font-weight: 500; letter-spacing: 0.12em;
   text-transform: uppercase; color: var(--t3);
+  white-space: nowrap;
 }
 
 .nav-links {
@@ -590,10 +592,13 @@ footer {
 }
 @media (max-width: 768px) {
   :root { --gutter: 24px; --section-v: 72px; }
-  #navbar { padding: 16px var(--gutter); }
-  #navbar.scrolled { padding: 12px var(--gutter); }
+  #navbar { padding: 14px var(--gutter); }
+  #navbar.scrolled { padding: 10px var(--gutter); }
   .nav-links { display: none; }
   .nav-toggle { display: flex; }
+  .nav-brand img { height: 30px; }
+  .nav-brand-name { font-size: 0.82rem; letter-spacing: 0.02em; }
+  .nav-brand-sub { font-size: 0.56rem; }
   .stats-grid { grid-template-columns: 1fr 1fr; }
   .footer-grid { grid-template-columns: 1fr; gap: 28px; }
   .footer-bottom { flex-direction: column; align-items: flex-start; }
@@ -601,8 +606,12 @@ footer {
   .page-hero { padding: 140px 0 72px; }
 }
 @media (max-width: 480px) {
-  :root { --gutter: 20px; }
-  .stats-grid { grid-template-columns: 1fr; }
+  :root { --gutter: 16px; }
+  .nav-brand { gap: 7px; }
+  .nav-brand img { height: 26px; }
+  .nav-brand-name { font-size: 0.72rem; letter-spacing: 0.01em; }
+  .nav-brand-sub { display: none; }
+  .stats-grid { grid-template-columns: 1fr 1fr; }
   .heading-xl { font-size: clamp(2.4rem, 10vw, 3.6rem); }
-  .fab-stack { bottom: 20px; right: 20px; }
+  .fab-stack { bottom: 20px; right: 16px; }
 }
