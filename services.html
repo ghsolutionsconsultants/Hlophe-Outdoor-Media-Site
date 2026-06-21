@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="Logo/HOM Logo Default.png">
+  <link rel="apple-touch-icon" href="Logo/HOM Logo Default.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advertising Services | Hlophe Outdoor Media — Billboards, Digital OOH, Spaza &amp; Wall Murals</title>
+<meta name="description" content="Hlophe Outdoor Media offers four powerful outdoor advertising formats: static billboards, spaza shop branding, digital OOH screens, and wall murals — all targeting Gauteng's township markets.">
+<meta name="keywords" content="outdoor advertising services Johannesburg, billboard advertising Gauteng, spaza shop branding, digital OOH South Africa, wall murals advertising, township advertising formats">
+<link rel="canonical" href="https://hlophemedia.co.za/services.html">
+<meta property="og:title" content="Advertising Services | Hlophe Outdoor Media">
+<meta property="og:description" content="Four powerful outdoor advertising formats connecting brands with millions of consumers across Gauteng's township markets.">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="css/style.css">
+<style>
+/* ===== SERVICE DETAIL SECTIONS ===== */
+.service-section {
+  padding: var(--section-v) 0;
+  scroll-margin-top: 100px;
+}
+.service-section + .service-section { padding-top: 0; }
+
+.svc-detail-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 72px; align-items: center;
+}
+.svc-detail-grid.reverse { direction: rtl; }
+.svc-detail-grid.reverse > * { direction: ltr; }
+
+.svc-image-wrap {
+  border-radius: var(--r-xl); overflow: hidden;
+  border: 1px solid var(--border-soft);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.45);
+  position: relative;
+}
+.svc-image-wrap img {
+  width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block;
+  transition: transform 0.6s var(--ease-spring);
+}
+.svc-image-wrap:hover img { transform: scale(1.03); }
+.svc-image-badge {
+  position: absolute; bottom: 16px; left: 16px;
+  padding: 8px 16px; border-radius: 50px;
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: rgba(124,58,237,0.80); backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.svc-detail-content { }
+.svc-detail-content .section-label { margin-bottom: 14px; }
+.svc-detail-content h2 {
+  font-family: 'Syne', sans-serif; font-size: clamp(1.8rem,3vw,2.5rem);
+  font-weight: 800; line-height: 1.1; letter-spacing: -0.02em;
+  margin-bottom: 20px;
+}
+.svc-detail-content h2 em {
+  font-style: normal;
+  background: linear-gradient(135deg, var(--accent-light), var(--accent-pale));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.svc-detail-content > p {
+  color: var(--t2); font-size: 1.0rem; line-height: 1.78; margin-bottom: 16px;
+}
+
+.svc-features-list { margin: 28px 0; display: flex; flex-direction: column; gap: 12px; }
+.svc-feat-item {
+  display: flex; align-items: flex-start; gap: 12px; padding: 14px 16px;
+  border-radius: var(--r-md); border: 1px solid var(--border-dim);
+  background: var(--glass-1);
+  transition: border-color 0.2s, background 0.2s;
+}
+.svc-feat-item:hover { border-color: rgba(124,58,237,0.25); background: var(--glass-2); }
+.svc-feat-icon {
+  width: 32px; height: 32px; border-radius: 8px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(124,58,237,0.14); border: 1px solid rgba(124,58,237,0.22);
+  color: var(--accent-pale);
+}
+.svc-feat-icon svg { width: 15px; height: 15px; }
+.svc-feat-text { }
+.svc-feat-title { font-size: 0.88rem; font-weight: 700; margin-bottom: 2px; }
+.svc-feat-desc  { font-size: 0.80rem; color: var(--t2); line-height: 1.55; }
+
+.svc-cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 32px; }
+
+/* ===== PROCESS ===== */
+.process-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
+.process-step { padding: 32px 24px; text-align: center; position: relative; }
+.process-step:not(:last-child)::after {
+  content: '';
+  position: absolute; top: 42px; right: -8px;
+  width: 16px; height: 1px;
+  background: linear-gradient(to right, var(--accent-light), transparent);
+}
+.process-num {
+  font-family: 'Syne', sans-serif; font-size: 0.7rem; font-weight: 800;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent-pale);
+  margin-bottom: 12px; display: block;
+}
+.process-icon { margin: 0 auto 16px; }
+.process-step h4 { font-size: 0.92rem; font-weight: 700; margin-bottom: 8px; }
+.process-step p  { font-size: 0.80rem; color: var(--t2); line-height: 1.60; }
+
+@media(max-width:900px){
+  .svc-detail-grid { grid-template-columns: 1fr; gap: 40px; }
+  .svc-detail-grid.reverse { direction: ltr; }
+  .process-grid { grid-template-columns: 1fr 1fr; }
+  .process-step::after { display: none; }
+}
+@media(max-width:500px){
+  .process-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<div class="bg-ambient"></div>
+
+<div id="mobile-menu">
+  <button id="mobile-menu-close" aria-label="Close menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M18 6L6 18M6 6l12 12"/></svg>
+  </button>
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="services.html">Services</a>
+  <a href="portfolio.html">Portfolio</a>
+  <a href="contact.html">Contact</a>
+</div>
+
+<nav id="navbar">
+  <a href="index.html" class="nav-brand">
+    <img src="Logo/HOM Logo White.png" alt="HOM Logo" width="38" height="38">
+    <div class="nav-brand-text">
+      <span class="nav-brand-name">HLOPHE OUTDOOR MEDIA</span>
+      <span class="nav-brand-sub">OOH Advertising · Gauteng</span>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="services.html" class="active">Services</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="contact.html" class="nav-cta">Get a Proposal</a>
+  </div>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Open menu"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-bg" aria-hidden="true"></div>
+  <div class="container page-hero-content">
+    <div class="page-hero-eyebrow">
+      <a href="index.html">Home</a><span class="sep">/</span><span>Services</span>
+    </div>
+    <h1>Four Formats. <span class="text-gradient">Millions of Impressions.</span></h1>
+    <p>Every format in our portfolio is designed to place your brand at the heart of South Africa's most dynamic and rapidly growing consumer markets.</p>
+  </div>
+</div>
+
+<!-- SERVICE 01 — BILLBOARDS -->
+<section class="service-section" id="billboards">
+  <div class="container">
+    <div class="svc-detail-grid">
+      <div class="svc-image-wrap reveal-left">
+        <img src="Sites:Services:Gallary/WhatsApp Image 2026-03-29 at 09.26.42.jpeg" alt="Static billboard advertising — Colgate at Jabulani, Hlophe Outdoor Media">
+        <div class="svc-image-badge">Static Billboard</div>
+      </div>
+      <div class="svc-detail-content reveal-right">
+        <div class="section-label"><span class="dot"></span>Format 01</div>
+        <h2>Static <em>Billboards</em></h2>
+        <p>Our large-format static billboards are positioned at the highest-traffic nodes in Gauteng's township corridors — delivering continuous, unmissable brand visibility 24 hours a day, 7 days a week.</p>
+        <p>Each site is carefully selected based on pedestrian footfall, vehicle traffic counts, sightline distances, and proximity to commercial anchors such as shopping centres, taxi ranks, and community hubs.</p>
+        <div class="svc-features-list">
+          <div class="svc-feat-item">
+            <div class="svc-feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5" fill="currentColor" stroke="none"/></svg></div>
+            <div class="svc-feat-text"><div class="svc-feat-title">Prime Locations</div><div class="svc-feat-desc">Sites near Jabulani Mall, Bara Taxi Rank, Protea Glen, Meadowlands and key commuter routes throughout Soweto and greater Gauteng.</div></div>
+          </div>
+          <div class="svc-feat-item">
+            <div class="svc-feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+            <div class="svc-feat-text"><div class="svc-feat-title">24/7 Exposure</div><div class="svc-feat-desc">Illuminated panels ensure your brand remains visible morning, afternoon, and night — capturing commuters across all shifts.</div></div>
+          </div>
+          <div class="svc-feat-item">
+            <div class="svc-feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div>
+            <div class="svc-feat-text"><div class="svc-feat-title">Proven Reach</div><div class="svc-feat-desc">Trusted by brands including Colgate, Old Mutual, Cell C, Hyundai, and ABSA to deliver consistent township market visibility.</div></div>
+          </div>
+          <div class="svc-feat-item">
+            <div class="svc-feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div>
+            <div class="svc-feat-text"><div class="svc-feat-title">Community Investment</div><div class="svc-feat-desc">Many sites are co-located at schools and places of worship — your rental investment supports community institutions.</div></div>
+          </div>
+        </div>
+        <div class="svc-cta">
+          <a href="contact.html" class="btn btn-primary">Request Billboard Rates<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a href="portfolio.html" class="btn btn-ghost">View Billboard Portfolio</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SERVICE 02 — SPAZA -->
+<section class="service-section" id="spaza">
+  <div class="container">
+    <div class="svc-detail-grid reverse">
+      <div class="svc-image-wrap reveal-right">
+        <img src="Sites:Services:Gallary/WhatsApp Image 2026-03-29 at 09.13.23.jpeg" alt="Spaza shop branding — Albany Bakeries, Hlophe Outdoor Media">
+        <div class="svc-image-badge">Spaza Shop Branding</div>
+      </div>
+      <div class="svc-detail-content reveal-left">
+        <div class="section-label"><span class="dot"></span>Format 02</div>
+        <h2>Spaza Shop <em>Branding</em></h2>
+        <p>South Africa has over 150,000 spaza shops serving as daily touchpoints for township communities. Hlophe Outdoor Media transforms these trusted local spaces into powerful, branded environments that drive recognition and affinity.</p>
+        <p>Spaza branding delivers something no billboard can — the endorsement of a trusted community institution. When consumers see your brand on their local spaza, it becomes part of their daily routine.</p>
+        <div class="svc-features-list">
+          <div class="svc-feat-item">
+            <div class="svc-feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l1.5-6h15L21 9H3z"/><path d="M21 9v1a3 3 0 01-3 3 3 3 0 01-3-3 3 3 0 01-3 3 3 3 0 01-3-3 3 3 0 01-3 3 3 3 0 01-3-3V9"/><path d="M9 21V12h6v9M3 21h18" stroke-linecap="round"/></svg></div>
+            <div class="svc-feat-text"><div class="svc-feat-title">Hyper-Local Presence</div><div class="svc-feat-desc">Reach consumers at the most intimate level — inside their own neighbourhood, at a store they visit multiple times per week.</div></div>
+          </div>
+          <div class="svc-feat-item">
+            <div class="svc-feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
+            <div class="svc-feat-text"><div class="svc-feat-title">Trust by Association</div><div class="svc-feat-desc">Spaza shops are deeply trusted community institutions. Brand association with these spaces transfers credibility to your product.</div></div>
+          </div>
+          <div class="svc-feat-item">
+            <div class="svc-feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+            <div class="svc-feat-text"><div class="svc-feat-title">Exterior &amp; Interior Branding</div><div class="svc-feat-desc">Full exterior painting, signage, and branded fascia — plus interior point-of-sale materials for complete brand immersion.</div></div>
+          </div>
+        </div>
+        <div class="svc-cta">
+          <a href="contact.html" class="btn btn-primary">Get a Spaza Branding Quote<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SERVICE 03 — DIGITAL -->
+<section class="service-section" id="digital">
+  <div class="container">
+    <div class="svc-detail-grid">
+      <div class="svc-image-wrap reveal-left">
+        <img src="Sites:Services:Gallary/WhatsApp Image 2026-03-29 at 09.26.18.jpeg" alt="Digital outdoor advertising billboard — Hlophe Outdoor Media">
+        <div class="svc-image-badge">Digital OOH</div>
+      </div>
+      <div class="svc-detail-content reveal-right">
+        <div class="section-label"><span class="dot"></span>Format 03</div>
+        <h2>Digital Outdoor <em>Advertising</em></h2>
+        <p>Our digital outdoor screens bring the precision of digital marketing to the physical world. Run multiple creatives, schedule by time of day, react to live events, and update your campaign in real time — all without reprinting.</p>
+        <p>Ideal for brands running multi-product campaigns, time-sensitive promotions, or any activation that demands flexibility without sacrificing scale.</p>
+        <div class="svc-features-list">
+          <div class="svc-feat-item">
+            <div class="svc-feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M7 9h10M7 12.5h5" stroke-linecap="round"/></svg></div>
+            <div class="svc-feat-text"><div class="svc-feat-title">Real-Time Content Control</div><div class="svc-feat-desc">Update your creative, swap messaging, and respond to market conditions instantly — no production delays, no wasted print costs.</div></div>
+          </div>
+          <div class="svc-feat-item">
+            <div class="svc-feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+            <div class="svc-feat-text"><div class="svc-feat-title">Dayparting &amp; Scheduling</div><div class="svc-feat-desc">Schedule different creatives for morning commuters, lunchtime shoppers, and evening pedestrian traffic — maximising relevance.</div></div>
+          </div>
+          <div class="svc-feat-item">
+            <div class="svc-feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <div class="svc-feat-text"><div class="svc-feat-title">High-Definition Displays</div><div class="svc-feat-desc">Full-colour HD LED panels with high brightness output — vibrant and legible in direct sunlight and at night.</div></div>
+          </div>
+        </div>
+        <div class="svc-cta">
+          <a href="contact.html" class="btn btn-primary">Enquire About Digital OOH<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SERVICE 04 — MURALS -->
+<section class="service-section" id="murals">
+  <div class="container">
+    <div class="svc-detail-grid reverse">
+      <div class="svc-image-wrap reveal-right">
+        <img src="Sites:Services:Gallary/WhatsApp Image 2026-03-29 at 09.25.09.jpeg" alt="Nkukhu-Box wall mural advertising — Hlophe Outdoor Media">
+        <div class="svc-image-badge">Wall Mural</div>
+      </div>
+      <div class="svc-detail-content reveal-left">
+        <div class="section-label"><span class="dot"></span>Format 04</div>
+        <h2>Wall <em>Murals</em></h2>
+        <p>Wall murals transform blank exterior walls into monumental, culturally resonant brand statements. Larger than billboards, longer-lasting than digital, and inherently shareable — they create genuine landmarks in the communities they inhabit.</p>
+        <p>Unlike traditional advertising, murals become part of the visual fabric of a community. They generate organic social media amplification, local press coverage, and lasting brand recall that outlives any campaign flight.</p>
+        <div class="svc-features-list">
+          <div class="svc-feat-item">
+            <div class="svc-feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 000-1.41L18.37 3.29a1 1 0 00-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg></div>
+            <div class="svc-feat-text"><div class="svc-feat-title">Monumental Scale</div><div class="svc-feat-desc">Entire building facades transformed into unmissable brand canvases — visible from hundreds of metres in any direction.</div></div>
+          </div>
+          <div class="svc-feat-item">
+            <div class="svc-feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div>
+            <div class="svc-feat-text"><div class="svc-feat-title">Cultural Connection</div><div class="svc-feat-desc">Our designs are informed by local artistic traditions and community aesthetics — making your brand feel genuinely at home.</div></div>
+          </div>
+          <div class="svc-feat-item">
+            <div class="svc-feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg></div>
+            <div class="svc-feat-text"><div class="svc-feat-title">Organic Social Amplification</div><div class="svc-feat-desc">Striking murals become self-generating content — photographed and shared by community members, extending reach far beyond foot traffic.</div></div>
+          </div>
+        </div>
+        <div class="svc-cta">
+          <a href="contact.html" class="btn btn-primary">Request a Mural Proposal<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- HOW IT WORKS -->
+<section class="section-pad">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label reveal"><span class="dot"></span>Our Process</div>
+      <h2 class="section-heading reveal d-100">From Brief to <em>Live Campaign</em></h2>
+      <p class="section-body reveal d-200">A straightforward, transparent process designed to get your brand in front of the right audiences as quickly and effectively as possible.</p>
+    </div>
+    <div class="process-grid">
+      <div class="process-step glass reveal d-100">
+        <span class="process-num">Step 01</span>
+        <div class="process-icon icon-wrap icon-wrap-lg icon-wrap-circle" style="margin:0 auto 16px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        </div>
+        <h4>Brief &amp; Discovery</h4>
+        <p>Share your campaign objectives, target audience, geography, and budget. We'll listen, ask the right questions, and define what success looks like for your brand.</p>
+      </div>
+      <div class="process-step glass reveal d-200">
+        <span class="process-num">Step 02</span>
+        <div class="process-icon icon-wrap icon-wrap-lg icon-wrap-circle" style="margin:0 auto 16px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2" fill="currentColor" stroke="none"/></svg>
+        </div>
+        <h4>Site Recommendation</h4>
+        <p>We present a curated selection of sites matched to your target demographic and campaign goals — with reach estimates, footfall data, and photo documentation for each location.</p>
+      </div>
+      <div class="process-step glass reveal d-300">
+        <span class="process-num">Step 03</span>
+        <div class="process-icon icon-wrap icon-wrap-lg icon-wrap-circle" style="margin:0 auto 16px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        </div>
+        <h4>Production &amp; Installation</h4>
+        <p>Your creative is produced to specification and professionally installed. We handle all logistics, site permissions, and quality assurance — you receive confirmation photography before launch.</p>
+      </div>
+      <div class="process-step glass reveal d-400">
+        <span class="process-num">Step 04</span>
+        <div class="process-icon icon-wrap icon-wrap-lg icon-wrap-circle" style="margin:0 auto 16px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+        </div>
+        <h4>Campaign Monitoring</h4>
+        <p>Throughout your flight, we monitor site conditions, provide proof-of-display photography, and maintain your creative — keeping your brand looking its best for the full campaign duration.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section-pad" style="padding-top:0;">
+  <div class="container">
+    <div class="cta-banner glass-deep reveal" style="max-width:780px;margin:0 auto;padding:56px 48px;">
+      <div class="cta-banner-bg" aria-hidden="true"></div>
+      <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);">Find the Right Format<br>for Your Brand</h2>
+      <p style="font-size:0.96rem;max-width:480px;">Not sure which format suits your campaign? Our team will help you choose the right combination of formats to maximise your reach and budget across Gauteng's township markets.</p>
+      <div class="cta-banner-btns">
+        <a href="contact.html" class="btn btn-primary">Talk to Our Team<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="portfolio.html" class="btn btn-ghost">See Our Work</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <img src="Logo/HOM Logo White.png" alt="Hlophe Outdoor Media Logo" width="48" height="48">
+        <div class="footer-brand-name">HLOPHE OUTDOOR MEDIA</div>
+        <p class="footer-tagline">Connecting brands with high-volume township markets across Gauteng through strategically positioned outdoor advertising.</p>
+        <div class="footer-reg">Company Reg: 2025/468598/07 · BBBEE Level 1<br>22803 Nectarine Street, Protea Glen ext 26, Soweto, 1818</div>
+      </div>
+      <div class="footer-col"><h4>Services</h4><ul>
+        <li><a href="#billboards">Static Billboards</a></li>
+        <li><a href="#spaza">Spaza Shop Branding</a></li>
+        <li><a href="#digital">Digital OOH</a></li>
+        <li><a href="#murals">Wall Murals</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Company</h4><ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Contact</h4><ul>
+        <li><a href="tel:+27814297622">081 429 7622</a></li>
+        <li><a href="mailto:thami@hlophemedia.co.za">thami@hlophemedia.co.za</a></li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2025 Hlophe Outdoor Media (Pty) Ltd. All rights reserved.</p>
+      <div class="footer-badges"><span class="footer-badge">🇿🇦 Proudly South African</span><span class="footer-badge">BBBEE Level 1</span></div>
+    </div>
+  </div>
+</footer>
+
+<div class="fab-stack">
+  <a href="mailto:thami@hlophemedia.co.za" class="fab fab-email" title="Email us" aria-label="Email us">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+  </a>
+  <button class="fab" id="fab-top" title="Back to top" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>

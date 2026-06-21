@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="Logo/HOM Logo Default.png">
+  <link rel="apple-touch-icon" href="Logo/HOM Logo Default.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio | Hlophe Outdoor Media — Campaigns Across Gauteng</title>
+<meta name="description" content="View Hlophe Outdoor Media's portfolio of outdoor advertising campaigns across Gauteng — featuring work for Colgate, Old Mutual, Cell C, Albany, Heineken and more.">
+<meta name="keywords" content="outdoor advertising portfolio South Africa, billboard campaigns Soweto, Hlophe Outdoor Media work, township advertising examples, OOH campaign gallery">
+<link rel="canonical" href="https://hlophemedia.co.za/portfolio.html">
+<meta property="og:title" content="Portfolio | Hlophe Outdoor Media">
+<meta property="og:description" content="Billboard campaigns, spaza branding, digital OOH and wall murals across Gauteng's township markets.">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="css/style.css">
+<style>
+/* ===== FILTER TABS ===== */
+.filter-tabs {
+  display: flex; gap: 8px; flex-wrap: wrap;
+  justify-content: center; margin-bottom: 48px;
+}
+.filter-tab {
+  padding: 9px 20px; border-radius: 50px; cursor: pointer;
+  font-size: 0.82rem; font-weight: 600; letter-spacing: 0.02em;
+  background: var(--glass-1); border: 1px solid var(--border-dim);
+  color: var(--t2); transition: all 0.25s var(--ease-out);
+}
+.filter-tab:hover { background: var(--glass-2); color: var(--t1); border-color: var(--border-soft); }
+.filter-tab.active {
+  background: linear-gradient(135deg, var(--accent), var(--accent-mid));
+  border-color: transparent; color: #fff;
+  box-shadow: 0 4px 16px rgba(124,58,237,0.40);
+}
+
+/* ===== PORTFOLIO GRID ===== */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.port-item {
+  border-radius: var(--r-lg); overflow: hidden; position: relative;
+  cursor: pointer; border: 1px solid var(--border-dim);
+  transition: border-color 0.3s, transform 0.4s var(--ease-spring);
+  background: var(--glass-1);
+}
+.port-item:hover { border-color: rgba(124,58,237,0.35); transform: translateY(-4px); }
+.port-item.featured { grid-column: span 2; }
+.port-item img {
+  width: 100%; object-fit: cover; display: block;
+  transition: transform 0.55s var(--ease-spring);
+  min-height: 240px;
+}
+.port-item.featured img { min-height: 380px; }
+.port-item:hover img { transform: scale(1.04); }
+
+.port-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(5,5,26,0.90) 0%, rgba(5,5,26,0.20) 50%, transparent 100%);
+  opacity: 0; transition: opacity 0.3s;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 24px;
+}
+.port-item:hover .port-overlay { opacity: 1; }
+.port-tag {
+  display: inline-block; padding: 4px 10px; border-radius: 50px; margin-bottom: 8px;
+  background: rgba(124,58,237,0.75); backdrop-filter: blur(8px);
+  font-size: 0.66rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  width: fit-content;
+}
+.port-title { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: 4px; }
+.port-client { font-size: 0.8rem; color: var(--t2); }
+
+.port-zoom {
+  position: absolute; top: 14px; right: 14px;
+  width: 34px; height: 34px; border-radius: 50%;
+  background: rgba(255,255,255,0.10); backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.18);
+  display: flex; align-items: center; justify-content: center;
+  color: white; opacity: 0; transition: opacity 0.3s;
+}
+.port-zoom svg { width: 15px; height: 15px; }
+.port-item:hover .port-zoom { opacity: 1; }
+
+/* hide items by filter */
+.port-item[data-cat].hidden { display: none; }
+
+/* ===== LIGHTBOX ===== */
+#lightbox {
+  position: fixed; inset: 0; z-index: 2000;
+  background: rgba(0,0,0,0.92); backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none; transition: opacity 0.3s; padding: 24px;
+}
+#lightbox.open { opacity: 1; pointer-events: all; }
+#lightbox img {
+  max-width: 90vw; max-height: 80vh; object-fit: contain;
+  border-radius: var(--r-lg); box-shadow: 0 32px 80px rgba(0,0,0,0.8);
+  display: block;
+}
+#lb-caption {
+  margin-top: 16px; font-size: 0.88rem; color: var(--t2);
+  text-align: center; max-width: 600px; line-height: 1.5;
+}
+#lb-close {
+  position: absolute; top: 20px; right: 20px;
+  width: 44px; height: 44px; border-radius: 50%;
+  background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.16);
+  color: white; cursor: pointer; font-size: 1.1rem;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s;
+}
+#lb-close:hover { background: rgba(124,58,237,0.40); }
+#lb-close svg { width: 18px; height: 18px; }
+
+/* ===== CLIENTS ===== */
+.clients-logos {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+}
+.client-logo-card {
+  padding: 24px 20px; border-radius: var(--r-md);
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--border-dim); background: var(--glass-1);
+  filter: grayscale(1) brightness(0.65);
+  transition: all 0.3s var(--ease-out);
+  min-height: 80px;
+}
+.client-logo-card:hover {
+  filter: none; background: var(--glass-2);
+  border-color: rgba(124,58,237,0.28);
+  transform: translateY(-3px);
+}
+.client-logo-card img { max-height: 38px; max-width: 120px; object-fit: contain; }
+
+@media(max-width:900px){
+  .portfolio-grid { grid-template-columns: 1fr 1fr; }
+  .port-item.featured { grid-column: span 2; }
+  .clients-logos { grid-template-columns: repeat(3,1fr); }
+}
+@media(max-width:600px){
+  .portfolio-grid { grid-template-columns: 1fr; }
+  .port-item.featured { grid-column: span 1; }
+  .clients-logos { grid-template-columns: repeat(2,1fr); }
+}
+</style>
+</head>
+<body>
+<div class="bg-ambient"></div>
+
+<div id="mobile-menu">
+  <button id="mobile-menu-close" aria-label="Close menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M18 6L6 18M6 6l12 12"/></svg>
+  </button>
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="services.html">Services</a>
+  <a href="portfolio.html">Portfolio</a>
+  <a href="contact.html">Contact</a>
+</div>
+
+<nav id="navbar">
+  <a href="index.html" class="nav-brand">
+    <img src="Logo/HOM Logo White.png" alt="HOM Logo" width="38" height="38">
+    <div class="nav-brand-text">
+      <span class="nav-brand-name">HLOPHE OUTDOOR MEDIA</span>
+      <span class="nav-brand-sub">OOH Advertising · Gauteng</span>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="portfolio.html" class="active">Portfolio</a>
+    <a href="contact.html" class="nav-cta">Get a Proposal</a>
+  </div>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Open menu"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-bg" aria-hidden="true"></div>
+  <div class="container page-hero-content">
+    <div class="page-hero-eyebrow">
+      <a href="index.html">Home</a><span class="sep">/</span><span>Portfolio</span>
+    </div>
+    <h1>Our Work. <span class="text-gradient">Their Results.</span></h1>
+    <p>A selection of campaigns delivered for leading brands across Gauteng's township markets — from Soweto to Tembisa, from static billboards to iconic wall murals.</p>
+  </div>
+</div>
+
+<!-- FILTER + GRID -->
+<section class="section-pad" style="padding-top: 20px;">
+  <div class="container">
+    <div class="filter-tabs reveal" role="tablist" aria-label="Portfolio filter">
+      <button class="filter-tab active" data-filter="all" role="tab" aria-selected="true">All Work</button>
+      <button class="filter-tab" data-filter="billboard" role="tab">Static Billboards</button>
+      <button class="filter-tab" data-filter="mural" role="tab">Wall Murals</button>
+      <button class="filter-tab" data-filter="spaza" role="tab">Spaza Branding</button>
+      <button class="filter-tab" data-filter="digital" role="tab">Digital OOH</button>
+    </div>
+
+    <div class="portfolio-grid" id="portfolio-grid">
+
+      <div class="port-item featured reveal d-100" data-cat="billboard" data-lightbox data-caption="Colgate 'Brushing Confidently' campaign — Jabulani Gate Billboard, Soweto. One of Hlophe's landmark static billboard locations at peak commuter traffic.">
+        <img src="Sites:Services:Gallary/WhatsApp Image 2026-03-29 at 09.26.42.jpeg" alt="Colgate Brushing Confidently billboard at Jabulani Gate — Hlophe Outdoor Media">
+        <div class="port-overlay">
+          <div class="port-tag">Static Billboard</div>
+          <div class="port-title">Colgate — Jabulani Gate</div>
+          <div class="port-client">High-impact entrance billboard serving thousands of daily shoppers and commuters</div>
+        </div>
+        <div class="port-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35" stroke-linecap="round"/></svg></div>
+      </div>
+
+      <div class="port-item reveal d-200" data-cat="billboard" data-lightbox data-caption="Old Mutual 'Do Great Things Every Day' billboard campaign positioned above a busy township shopping precinct in Gauteng.">
+        <img src="Sites:Services:Gallary/WhatsApp Image 2026-03-29 at 09.26.18.jpeg" alt="Old Mutual outdoor billboard campaign — Hlophe Outdoor Media">
+        <div class="port-overlay">
+          <div class="port-tag">Static Billboard</div>
+          <div class="port-title">Old Mutual</div>
+          <div class="port-client">Premium shopping precinct billboard with elevated sightlines</div>
+        </div>
+        <div class="port-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35" stroke-linecap="round"/></svg></div>
+      </div>
+
+      <div class="port-item reveal d-100" data-cat="billboard" data-lightbox data-caption="Cell C 'South Africa's Number 1 Network' large-format highway billboard on a major Gauteng commuter route serving high daily vehicle traffic.">
+        <img src="Sites:Services:Gallary/PHOTO-2026-03-29-07-18-59.jpg" alt="Cell C South Africa No.1 Network highway billboard — Hlophe Outdoor Media">
+        <div class="port-overlay">
+          <div class="port-tag">Static Billboard</div>
+          <div class="port-title">Cell C — Highway Route</div>
+          <div class="port-client">High-speed commuter route with 50,000+ daily vehicles</div>
+        </div>
+        <div class="port-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35" stroke-linecap="round"/></svg></div>
+      </div>
+
+      <div class="port-item reveal d-200" data-cat="billboard" data-lightbox data-caption="Hyundai brand campaign billboard positioned at a major Gauteng intersection with panoramic visibility and high daily vehicle counts.">
+        <img src="Sites:Services:Gallary/PHOTO-2026-03-29-07-19-00.jpg" alt="Hyundai intersection billboard Gauteng — Hlophe Outdoor Media">
+        <div class="port-overlay">
+          <div class="port-tag">Static Billboard</div>
+          <div class="port-title">Hyundai — Intersection</div>
+          <div class="port-client">Panoramic intersection billboard, elevated position</div>
+        </div>
+        <div class="port-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35" stroke-linecap="round"/></svg></div>
+      </div>
+
+      <div class="port-item featured reveal d-100" data-cat="mural" data-lightbox data-caption="Nkukhu-Box 'Grilled Kasi Flavour' franchise campaign — large-format wall mural in a township residential area generating strong community visibility and social media traction.">
+        <img src="Sites:Services:Gallary/WhatsApp Image 2026-03-29 at 09.25.09.jpeg" alt="Nkukhu-Box wall mural advertising — Hlophe Outdoor Media">
+        <div class="port-overlay">
+          <div class="port-tag">Wall Mural</div>
+          <div class="port-title">Nkukhu-Box — Franchise Mural</div>
+          <div class="port-client">Full perimeter wall mural spanning 18 metres — community landmark</div>
+        </div>
+        <div class="port-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35" stroke-linecap="round"/></svg></div>
+      </div>
+
+      <div class="port-item reveal d-200" data-cat="spaza" data-lightbox data-caption="Albany Bakeries spaza shop branding in Jabulani — full exterior paint, branded fascia and point-of-sale materials at a high-volume community spaza.">
+        <img src="Sites:Services:Gallary/WhatsApp Image 2026-03-29 at 09.13.23.jpeg" alt="Albany spaza shop branding Jabulani — Hlophe Outdoor Media">
+        <div class="port-overlay">
+          <div class="port-tag">Spaza Branding</div>
+          <div class="port-title">Albany Bakeries</div>
+          <div class="port-client">Full exterior rebrand with branded signage and fascia</div>
+        </div>
+        <div class="port-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35" stroke-linecap="round"/></svg></div>
+      </div>
+
+      <div class="port-item reveal d-300" data-cat="billboard" data-lightbox data-caption="Additional Hlophe Outdoor Media billboard site demonstrating our network's breadth across Gauteng's township corridors.">
+        <img src="Sites:Services:Gallary/WhatsApp Image 2026-03-29 at 09.13.58.jpeg" alt="Hlophe Outdoor Media billboard site Gauteng">
+        <div class="port-overlay">
+          <div class="port-tag">Static Billboard</div>
+          <div class="port-title">Gauteng Network Site</div>
+          <div class="port-client">Strategic township corridor location</div>
+        </div>
+        <div class="port-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35" stroke-linecap="round"/></svg></div>
+      </div>
+
+      <div class="port-item reveal d-400" data-cat="billboard" data-lightbox data-caption="Another premier Hlophe Outdoor Media billboard site in the Gauteng township advertising network.">
+        <img src="Sites:Services:Gallary/WhatsApp Image 2026-03-29 at 09.13.59.jpeg" alt="Hlophe Outdoor Media network billboard Gauteng">
+        <div class="port-overlay">
+          <div class="port-tag">Static Billboard</div>
+          <div class="port-title">Gauteng Network Site</div>
+          <div class="port-client">High-traffic township hub location</div>
+        </div>
+        <div class="port-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35" stroke-linecap="round"/></svg></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" role="dialog" aria-label="Image viewer" aria-modal="true">
+  <button id="lb-close" aria-label="Close image viewer">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+  </button>
+  <img id="lb-img" src="" alt="">
+  <p id="lb-caption"></p>
+</div>
+
+<div class="divider" style="margin-top:0;"></div>
+
+<!-- CLIENTS -->
+<section class="section-pad">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label reveal"><span class="dot"></span>Our Clients</div>
+      <h2 class="section-heading reveal d-100">Brands We've <em>Worked With</em></h2>
+      <p class="section-body reveal d-200">Hlophe Outdoor Media has delivered campaigns for some of South Africa's most recognisable and respected brands.</p>
+    </div>
+    <div class="clients-logos reveal">
+      <div class="client-logo-card"><img src="Previous Clients/Absa-logo2.webp" alt="ABSA Bank"></div>
+      <div class="client-logo-card"><img src="Previous Clients/Colgate.svg" alt="Colgate"></div>
+      <div class="client-logo-card"><img src="Previous Clients/Heineken-Oct24.png" alt="Heineken"></div>
+      <div class="client-logo-card"><img src="Previous Clients/amstel.svg" alt="Amstel"></div>
+      <div class="client-logo-card"><img src="Previous Clients/Engen_Petroleum_logo.svg.png" alt="Engen Petroleum"></div>
+      <div class="client-logo-card"><img src="Previous Clients/GWM-Logo-2013.jpg" alt="GWM Motors"></div>
+      <div class="client-logo-card"><img src="Previous Clients/gordons-gin-logo-png_seeklogo-247675.png" alt="Gordon's Gin"></div>
+      <div class="client-logo-card"><img src="Previous Clients/BrandLogo.jpg" alt="Client Brand"></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section-pad" style="padding-top:0;">
+  <div class="container">
+    <div class="cta-banner glass-deep reveal">
+      <div class="cta-banner-bg" aria-hidden="true"></div>
+      <h2>Your Brand Belongs<br>in This Portfolio</h2>
+      <p>Join the leading brands already reaching millions of township consumers through Hlophe Outdoor Media's strategic advertising network across Gauteng.</p>
+      <div class="cta-banner-btns">
+        <a href="contact.html" class="btn btn-primary btn-lg">Start Your Campaign<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="services.html" class="btn btn-ghost btn-lg">Explore Services</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <img src="Logo/HOM Logo White.png" alt="Hlophe Outdoor Media Logo" width="48" height="48">
+        <div class="footer-brand-name">HLOPHE OUTDOOR MEDIA</div>
+        <p class="footer-tagline">Connecting brands with high-volume township markets across Gauteng through strategically positioned outdoor advertising.</p>
+        <div class="footer-reg">Company Reg: 2025/468598/07 · BBBEE Level 1<br>22803 Nectarine Street, Protea Glen ext 26, Soweto, 1818</div>
+      </div>
+      <div class="footer-col"><h4>Services</h4><ul>
+        <li><a href="services.html#billboards">Static Billboards</a></li>
+        <li><a href="services.html#spaza">Spaza Shop Branding</a></li>
+        <li><a href="services.html#digital">Digital OOH</a></li>
+        <li><a href="services.html#murals">Wall Murals</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Company</h4><ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Contact</h4><ul>
+        <li><a href="tel:+27814297622">081 429 7622</a></li>
+        <li><a href="mailto:thami@hlophemedia.co.za">thami@hlophemedia.co.za</a></li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2025 Hlophe Outdoor Media (Pty) Ltd. All rights reserved.</p>
+      <div class="footer-badges"><span class="footer-badge">🇿🇦 Proudly South African</span><span class="footer-badge">BBBEE Level 1</span></div>
+    </div>
+  </div>
+</footer>
+
+<div class="fab-stack">
+  <a href="mailto:thami@hlophemedia.co.za" class="fab fab-email" title="Email us" aria-label="Email us">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+  </a>
+  <button class="fab" id="fab-top" title="Back to top" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+</div>
+
+<script src="js/main.js"></script>
+<script>
+/* Portfolio filter */
+(function(){
+  const tabs  = document.querySelectorAll('.filter-tab');
+  const items = document.querySelectorAll('.port-item[data-cat]');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected','false'); });
+      tab.classList.add('active'); tab.setAttribute('aria-selected','true');
+      const f = tab.dataset.filter;
+      items.forEach(item => {
+        if (f === 'all' || item.dataset.cat === f) {
+          item.classList.remove('hidden');
+        } else {
+          item.classList.add('hidden');
+        }
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>

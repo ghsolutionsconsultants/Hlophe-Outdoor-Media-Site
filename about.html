@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="Logo/HOM Logo Default.png">
+  <link rel="apple-touch-icon" href="Logo/HOM Logo Default.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us | Hlophe Outdoor Media — Soweto, Johannesburg</title>
+<meta name="description" content="Learn about Hlophe Outdoor Media — founded in 2025 by Thamsanqa Ramatsoma, we are Johannesburg's leading township outdoor advertising company, proudly BBBEE Level 1.">
+<meta name="keywords" content="about Hlophe Outdoor Media, Thamsanqa Ramatsoma, township advertising Johannesburg, BBBEE Level 1 advertising, Soweto advertising agency">
+<link rel="canonical" href="https://hlophemedia.co.za/about.html">
+<meta property="og:title" content="About Hlophe Outdoor Media">
+<meta property="og:description" content="Founded in 2025 by Thamsanqa Ramatsoma, Hlophe Outdoor Media connects brands with township markets across Gauteng. BBBEE Level 1.">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="css/style.css">
+<style>
+/* ===== ABOUT-SPECIFIC STYLES ===== */
+.about-grid {
+  display: grid; grid-template-columns: 1fr 1.15fr;
+  gap: 72px; align-items: start;
+}
+.about-photo-wrap { position: relative; }
+.about-photo-frame {
+  border-radius: var(--r-xl); overflow: hidden;
+  border: 1px solid var(--border-soft);
+  box-shadow: 0 24px 64px rgba(0,0,0,0.5);
+  position: relative;
+}
+.about-photo-frame img {
+  width: 100%; aspect-ratio: 4/5; object-fit: cover; object-position: top;
+  display: block;
+}
+.about-photo-frame::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(5,5,26,0.55) 0%, transparent 45%);
+}
+.about-photo-badge {
+  position: absolute; bottom: -20px; right: -16px;
+  padding: 22px 26px; z-index: 2; text-align: center;
+  min-width: 120px;
+}
+.about-photo-badge .val {
+  font-family: 'Syne', sans-serif; font-size: 2.4rem; font-weight: 800;
+  line-height: 1; display: block;
+  background: linear-gradient(135deg, #fff, var(--accent-pale));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.about-photo-badge .lbl {
+  font-size: 0.72rem; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.1em; color: var(--t3); margin-top: 4px; display: block;
+}
+.founder-tag {
+  position: absolute; top: 20px; left: -16px; z-index: 2;
+  padding: 10px 18px; border-radius: 50px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-mid));
+  color: #fff; font-size: 0.78rem; font-weight: 700;
+  box-shadow: 0 8px 24px rgba(124,58,237,0.45);
+  letter-spacing: 0.04em;
+}
+.about-text {}
+.about-text .section-heading { margin-bottom: 28px; }
+.about-text p { color: var(--t2); font-size: 1.0rem; line-height: 1.78; margin-bottom: 20px; }
+.about-text p strong { color: var(--t1); font-weight: 600; }
+.about-values {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 40px;
+}
+.val-card { padding: 22px 20px; display: flex; gap: 14px; align-items: flex-start; }
+.val-card .icon-wrap { flex-shrink: 0; width: 40px; height: 40px; border-radius: 10px; }
+.val-card .icon-wrap svg { width: 18px; height: 18px; }
+.val-title { font-size: 0.9rem; font-weight: 700; margin-bottom: 4px; }
+.val-desc { font-size: 0.8rem; color: var(--t2); line-height: 1.55; }
+
+/* Mission / Vision */
+.mv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.mv-card { padding: 44px 40px; }
+.mv-card h3 { font-family: 'Syne', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent-pale); margin-bottom: 16px; }
+.mv-card p  { font-size: 1.05rem; color: var(--t1); line-height: 1.72; font-weight: 400; }
+
+/* Pillars */
+.pillars-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+.pillar { padding: 36px 28px; text-align: center; }
+.pillar .icon-wrap { margin: 0 auto 20px; }
+.pillar h4 { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: 10px; }
+.pillar p  { font-size: 0.86rem; color: var(--t2); line-height: 1.65; }
+
+@media(max-width:900px){
+  .about-grid { grid-template-columns: 1fr; gap: 48px; }
+  .about-photo-badge { right: 0; }
+  .founder-tag { left: 0; }
+  .about-values { grid-template-columns: 1fr; }
+  .mv-grid { grid-template-columns: 1fr; }
+  .pillars-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<div class="bg-ambient"></div>
+
+<div id="mobile-menu">
+  <button id="mobile-menu-close" aria-label="Close menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M18 6L6 18M6 6l12 12"/></svg>
+  </button>
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="services.html">Services</a>
+  <a href="portfolio.html">Portfolio</a>
+  <a href="contact.html">Contact</a>
+</div>
+
+<nav id="navbar">
+  <a href="index.html" class="nav-brand" aria-label="Hlophe Outdoor Media Home">
+    <img src="Logo/HOM Logo White.png" alt="HOM Logo" width="38" height="38">
+    <div class="nav-brand-text">
+      <span class="nav-brand-name">HLOPHE OUTDOOR MEDIA</span>
+      <span class="nav-brand-sub">OOH Advertising · Gauteng</span>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="about.html" class="active">About</a>
+    <a href="services.html">Services</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="contact.html" class="nav-cta">Get a Proposal</a>
+  </div>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-bg" aria-hidden="true"></div>
+  <div class="container page-hero-content">
+    <div class="page-hero-eyebrow">
+      <a href="index.html">Home</a>
+      <span class="sep">/</span>
+      <span>About Us</span>
+    </div>
+    <h1>Built in Soweto.<br><span class="text-gradient">Built for South Africa.</span></h1>
+    <p>Hlophe Outdoor Media was founded on a simple conviction: township markets are not a niche — they are the heartbeat of South African commerce.</p>
+  </div>
+</div>
+
+<!-- FOUNDER STORY -->
+<section class="section-pad">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-photo-wrap reveal-left">
+        <div class="about-photo-frame">
+          <img src="Owner Pictures/WhatsApp Image 2026-03-29 at 09.15.59.jpeg" alt="Thamsanqa Ramatsoma — Founder &amp; CEO, Hlophe Outdoor Media">
+        </div>
+        <div class="about-photo-badge glass-deep">
+          <span class="val">2025</span>
+          <span class="lbl">Est. Soweto</span>
+        </div>
+        <div class="founder-tag">Founder &amp; CEO</div>
+      </div>
+      <div class="about-text reveal-right">
+        <div class="section-label"><span class="dot"></span>Our Founder</div>
+        <h2 class="section-heading">Thamsanqa <em>Ramatsoma</em></h2>
+        <p>Hlophe Outdoor Media was founded in <strong>2025 by Thamsanqa Ramatsoma</strong>, a Soweto-based entrepreneur with a deep understanding of the township economy and an unwavering belief in its commercial potential.</p>
+        <p>Thamsanqa identified a clear market gap: while global and South African brands poured resources into metropolitan media channels, the vast, active, and brand-receptive township consumer base remained systematically underserved by quality outdoor advertising.</p>
+        <p>Starting in Gauteng's most vibrant community corridors, he built Hlophe Outdoor Media around a simple principle — <strong>advertising that respects the communities it serves, and delivers results for the brands that invest in them.</strong></p>
+        <p>Today, the company proudly holds <strong>BBBEE Level 1 status</strong> and has worked with some of South Africa's most recognisable brands, including Colgate, Old Mutual, Cell C, Heineken, ABSA, and Engen.</p>
+        <div class="about-values">
+          <div class="val-card glass">
+            <div class="icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2" fill="currentColor" stroke="none"/></svg>
+            </div>
+            <div><div class="val-title">Precision</div><div class="val-desc">Sites selected for maximum reach and relevance within each community.</div></div>
+          </div>
+          <div class="val-card glass">
+            <div class="icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div><div class="val-title">Integrity</div><div class="val-desc">Transparent pricing, honest reporting, and genuine community partnerships.</div></div>
+          </div>
+          <div class="val-card glass">
+            <div class="icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+            </div>
+            <div><div class="val-title">Community</div><div class="val-desc">Rental income channelled to schools and churches across our site network.</div></div>
+          </div>
+          <div class="val-card glass">
+            <div class="icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+            </div>
+            <div><div class="val-title">Results</div><div class="val-desc">Every site chosen to maximise brand exposure, recall, and campaign ROI.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- MISSION / VISION -->
+<section class="section-pad">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label reveal"><span class="dot"></span>Purpose &amp; Direction</div>
+      <h2 class="section-heading reveal d-100">Mission &amp; <em>Vision</em></h2>
+    </div>
+    <div class="mv-grid">
+      <div class="mv-card glass-deep reveal d-100">
+        <h3>Our Mission</h3>
+        <p>"To provide brands with premium outdoor advertising platforms that deliver authentic, high-impact connections with South Africa's township and urban communities — while generating meaningful economic value for those communities."</p>
+      </div>
+      <div class="mv-card glass-deep reveal d-200">
+        <h3>Our Vision</h3>
+        <p>"To be the most trusted and effective outdoor advertising network in South Africa's township markets — recognised by brands for our reach and results, and by communities for our integrity and investment."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- STATS -->
+<section class="section-pad">
+  <div class="container">
+    <div class="stats-grid reveal">
+      <div class="stat-card">
+        <div class="stat-value" data-counter data-target="10" data-suffix="+">10+</div>
+        <div class="stat-label">Major Brands</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" data-counter data-target="4" data-suffix="">4</div>
+        <div class="stat-label">Ad Formats</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" data-counter data-target="5" data-suffix="M+">5M+</div>
+        <div class="stat-label">Consumers Reached</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">Level 1</div>
+        <div class="stat-label">BBBEE Status</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- VALUES -->
+<section class="section-pad">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label reveal"><span class="dot"></span>What We Stand For</div>
+      <h2 class="section-heading reveal d-100">Our <em>Core Values</em></h2>
+      <p class="section-body reveal d-200">Every decision at Hlophe Outdoor Media is guided by these three principles.</p>
+    </div>
+    <div class="pillars-grid">
+      <div class="pillar glass reveal d-100">
+        <div class="icon-wrap icon-wrap-lg icon-wrap-circle">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h4>Authentic Representation</h4>
+        <p>We are embedded in the communities we serve. Our team understands township culture, foot traffic patterns, and consumer behaviour — giving our clients a genuine competitive edge.</p>
+      </div>
+      <div class="pillar glass reveal d-200">
+        <div class="icon-wrap icon-wrap-lg icon-wrap-circle">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9" stroke-linecap="round"/></svg>
+        </div>
+        <h4>Strategic Thinking</h4>
+        <p>We don't place billboards at random. Every site in our network has been evaluated for footfall, dwell time, sightlines, and audience composition to ensure maximum campaign impact.</p>
+      </div>
+      <div class="pillar glass reveal d-300">
+        <div class="icon-wrap icon-wrap-lg icon-wrap-circle">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        </div>
+        <h4>Social Responsibility</h4>
+        <p>Our billboard sites generate rental income for schools and churches — institutions that sustain communities but often struggle with funding. Advertising with us creates social impact alongside brand impact.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section-pad">
+  <div class="container">
+    <div class="cta-banner glass-deep reveal" style="padding:60px 56px;">
+      <div class="cta-banner-bg" aria-hidden="true"></div>
+      <h2>Let's Build Something<br>Great Together</h2>
+      <p>Whether you're a major brand or an ambitious challenger, Hlophe Outdoor Media has the platforms, expertise, and community relationships to make your campaign succeed.</p>
+      <div class="cta-banner-btns">
+        <a href="contact.html" class="btn btn-primary btn-lg">Start a Conversation
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="services.html" class="btn btn-ghost btn-lg">View Our Services</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <img src="Logo/HOM Logo White.png" alt="Hlophe Outdoor Media Logo" width="48" height="48">
+        <div class="footer-brand-name">HLOPHE OUTDOOR MEDIA</div>
+        <p class="footer-tagline">Connecting brands with high-volume township markets across Gauteng through strategically positioned outdoor advertising.</p>
+        <div class="footer-reg">Company Reg: 2025/468598/07 · BBBEE Level 1<br>22803 Nectarine Street, Protea Glen ext 26, Soweto, 1818</div>
+      </div>
+      <div class="footer-col"><h4>Services</h4><ul>
+        <li><a href="services.html#billboards">Static Billboards</a></li>
+        <li><a href="services.html#spaza">Spaza Shop Branding</a></li>
+        <li><a href="services.html#digital">Digital OOH</a></li>
+        <li><a href="services.html#murals">Wall Murals</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Company</h4><ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Contact</h4><ul>
+        <li><a href="tel:+27814297622">081 429 7622</a></li>
+        <li><a href="mailto:thami@hlophemedia.co.za">thami@hlophemedia.co.za</a></li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2025 Hlophe Outdoor Media (Pty) Ltd. All rights reserved.</p>
+      <div class="footer-badges"><span class="footer-badge">🇿🇦 Proudly South African</span><span class="footer-badge">BBBEE Level 1</span></div>
+    </div>
+  </div>
+</footer>
+
+<div class="fab-stack">
+  <a href="mailto:thami@hlophemedia.co.za" class="fab fab-email" title="Email us" aria-label="Email us">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+  </a>
+  <button class="fab" id="fab-top" title="Back to top" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>
