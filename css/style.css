@@ -628,6 +628,12 @@ footer {
 .cta-banner h2 { margin-bottom: 20px; }
 .cta-banner p  { margin-bottom: 52px !important; }
 
+@media (max-width: 580px) {
+  .cta-banner { padding: 44px 24px !important; }
+  .cta-banner h2 { font-size: clamp(1.4rem, 6vw, 1.8rem) !important; }
+  .cta-banner p  { font-size: 0.9rem !important; margin-bottom: 40px !important; }
+}
+
 /* ===== ALL BUTTON GROUPS ===== */
 .cta-banner-btns,
 .hero-ctas {
