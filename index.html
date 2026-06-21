@@ -104,9 +104,17 @@
   animation: fadeUp 0.9s var(--ease-spring) 0.50s both;
 }
 .hero-ctas {
-  display: flex; gap: 14px; flex-wrap: wrap;
+  display: flex; gap: 16px; flex-wrap: nowrap;
   animation: fadeUp 0.9s var(--ease-spring) 0.65s both;
   margin-bottom: 64px;
+}
+@media (max-width: 520px) {
+  .hero-ctas {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  .hero-ctas .btn { width: 100%; max-width: 320px; justify-content: center; }
 }
 .hero-trust {
   display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
@@ -270,9 +278,6 @@
   .work-item:first-child { grid-row: span 1; height: 280px; }
   .work-item { height: 200px; }
   .cta-banner { padding: 44px 28px; border-radius: var(--r-xl); }
-}
-@media(max-width:600px){
-  .hero-ctas { flex-direction: column; align-items: flex-start; }
 }
 </style>
 <script type="application/ld+json">

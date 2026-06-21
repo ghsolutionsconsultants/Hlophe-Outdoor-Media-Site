@@ -624,32 +624,40 @@ footer {
   .fab-stack { bottom: 20px; right: 16px; }
 }
 
-/* ===== CTA BANNER BUTTONS ===== */
-.cta-banner-btns {
+/* ===== ALL BUTTON GROUPS ===== */
+.cta-banner-btns,
+.hero-ctas {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
   gap: 20px;
   flex-wrap: nowrap;
   position: relative;
   z-index: 1;
 }
-.cta-banner-btns .btn {
+.cta-banner-btns {
+  justify-content: center;
+}
+.cta-banner-btns .btn,
+.hero-ctas .btn {
   flex-shrink: 0;
-  padding: 16px 32px;
+  padding: 17px 36px;
   font-size: 0.95rem;
+  min-width: 160px;
 }
 @media (max-width: 580px) {
-  .cta-banner-btns {
+  .cta-banner-btns,
+  .hero-ctas {
     flex-direction: column;
     align-items: stretch;
     gap: 14px;
   }
-  .cta-banner-btns .btn {
+  .cta-banner-btns .btn,
+  .hero-ctas .btn {
     width: 100%;
     max-width: 340px;
     margin: 0 auto;
     justify-content: center;
+    min-width: unset;
   }
 }
