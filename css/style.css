@@ -615,3 +615,14 @@ footer {
   .heading-xl { font-size: clamp(2.4rem, 10vw, 3.6rem); }
   .fab-stack { bottom: 20px; right: 16px; }
 }
+
+/* ===== CTA BANNER BUTTONS ===== */
+.cta-banner-btns {
+  display: flex; gap: 16px; justify-content: center;
+  flex-wrap: wrap; position: relative; z-index: 1;
+}
+@media (max-width: 520px) {
+  .cta-banner-btns { flex-direction: column; align-items: center; gap: 12px; }
+  .cta-banner-btns .btn { width: 100%; max-width: 320px; justify-content: center; }
+  .cta-banner p { margin-bottom: 36px; }
+}
