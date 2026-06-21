@@ -624,6 +624,10 @@ footer {
   .fab-stack { bottom: 20px; right: 16px; }
 }
 
+/* ===== CTA BANNER TEXT SPACING ===== */
+.cta-banner h2 { margin-bottom: 20px; }
+.cta-banner p  { margin-bottom: 52px !important; }
+
 /* ===== ALL BUTTON GROUPS ===== */
 .cta-banner-btns,
 .hero-ctas {
