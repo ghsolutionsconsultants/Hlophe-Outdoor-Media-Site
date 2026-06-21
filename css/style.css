@@ -57,18 +57,26 @@
 
 /* ---- Reset ---- */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  max-width: 100%;
+}
 body {
   font-family: 'Inter', system-ui, sans-serif;
   background: var(--bg-base);
   color: var(--t1);
   line-height: 1.6;
   overflow-x: hidden;
+  width: 100%;
+  position: relative;
 }
+*, *::before, *::after { box-sizing: border-box; }
 img { display: block; max-width: 100%; }
 a { text-decoration: none; color: inherit; }
 button { font-family: inherit; }
-svg { display: block; }
+svg { display: block; overflow: visible; }
 
 /* ---- Ambient Background ---- */
 .bg-ambient {
@@ -147,7 +155,7 @@ svg { display: block; }
   padding: 0 var(--gutter);
 }
 
-section { position: relative; z-index: 1; }
+section { position: relative; z-index: 1; overflow-x: hidden; }
 .section-pad { padding: var(--section-v) 0; }
 
 .section-label {
