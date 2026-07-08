@@ -62,13 +62,22 @@
 .about-text p { color: var(--t2); font-size: 1.0rem; line-height: 1.78; margin-bottom: 20px; }
 .about-text p strong { color: var(--t1); font-weight: 600; }
 .about-values {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 40px;
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 56px;
 }
-.val-card { padding: 22px 20px; display: flex; gap: 14px; align-items: flex-start; }
-.val-card .icon-wrap { flex-shrink: 0; width: 40px; height: 40px; border-radius: 10px; }
-.val-card .icon-wrap svg { width: 18px; height: 18px; }
-.val-title { font-size: 0.9rem; font-weight: 700; margin-bottom: 4px; }
-.val-desc { font-size: 0.8rem; color: var(--t2); line-height: 1.55; }
+.val-card {
+  padding: 28px 24px; display: flex; flex-direction: column;
+  gap: 14px; align-items: flex-start; text-align: left;
+}
+.val-card .icon-wrap { flex-shrink: 0; width: 44px; height: 44px; border-radius: 12px; }
+.val-card .icon-wrap svg { width: 20px; height: 20px; }
+.val-title { font-size: 1rem; font-weight: 700; margin-bottom: 6px; font-family: 'Syne', sans-serif; }
+.val-desc { font-size: 0.83rem; color: var(--t2); line-height: 1.65; }
+@media (max-width: 768px) {
+  .about-values { grid-template-columns: 1fr 1fr; gap: 12px; }
+}
+@media (max-width: 480px) {
+  .about-values { grid-template-columns: 1fr; }
+}
 
 /* Mission / Vision */
 .mv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
@@ -162,32 +171,32 @@
         <p>Thamsanqa identified a clear market gap: while global and South African brands poured resources into metropolitan media channels, the vast, active, and brand-receptive township consumer base remained systematically underserved by quality outdoor advertising.</p>
         <p>Starting in Gauteng's most vibrant community corridors, he built Hlophe Outdoor Media around a simple principle, <strong>advertising that respects the communities it serves, and delivers results for the brands that invest in them.</strong></p>
         <p>Today, the company proudly holds <strong>BBBEE Level 1 status</strong> and has worked with some of South Africa's most recognisable brands, including Colgate, Old Mutual, Cell C, Heineken, ABSA, and Engen.</p>
-        <div class="about-values">
-          <div class="val-card glass">
-            <div class="icon-wrap">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2" fill="currentColor" stroke="none"/></svg>
-            </div>
-            <div><div class="val-title">Precision</div><div class="val-desc">Sites selected for maximum reach and relevance within each community.</div></div>
-          </div>
-          <div class="val-card glass">
-            <div class="icon-wrap">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            </div>
-            <div><div class="val-title">Integrity</div><div class="val-desc">Transparent pricing, honest reporting, and genuine community partnerships.</div></div>
-          </div>
-          <div class="val-card glass">
-            <div class="icon-wrap">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
-            </div>
-            <div><div class="val-title">Community</div><div class="val-desc">Rental income channelled to schools and churches across our site network.</div></div>
-          </div>
-          <div class="val-card glass">
-            <div class="icon-wrap">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
-            </div>
-            <div><div class="val-title">Results</div><div class="val-desc">Every site chosen to maximise brand exposure, recall, and campaign ROI.</div></div>
-          </div>
+      </div>
+    </div>
+    <div class="about-values reveal">
+      <div class="val-card glass">
+        <div class="icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2" fill="currentColor" stroke="none"/></svg>
         </div>
+        <div><div class="val-title">Precision</div><div class="val-desc">Sites selected for maximum reach and relevance within each community.</div></div>
+      </div>
+      <div class="val-card glass">
+        <div class="icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div><div class="val-title">Integrity</div><div class="val-desc">Transparent pricing, honest reporting, and genuine community partnerships.</div></div>
+      </div>
+      <div class="val-card glass">
+        <div class="icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <div><div class="val-title">Community</div><div class="val-desc">Rental income channelled to schools and churches across our site network.</div></div>
+      </div>
+      <div class="val-card glass">
+        <div class="icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+        </div>
+        <div><div class="val-title">Results</div><div class="val-desc">Every site chosen to maximise brand exposure, recall, and campaign ROI.</div></div>
       </div>
     </div>
   </div>
