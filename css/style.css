@@ -612,7 +612,7 @@ footer {
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
 }
 @media (max-width: 768px) {
-  :root { --gutter: 24px; --section-v: 72px; }
+  :root { --gutter: 24px; --section-v: 64px; }
   #navbar { padding: 14px var(--gutter); }
   #navbar.scrolled { padding: 10px var(--gutter); }
   .nav-links { display: none; }
@@ -621,22 +621,39 @@ footer {
   .nav-brand-name { font-size: 0.82rem; letter-spacing: 0.02em; }
   .nav-brand-sub { font-size: 0.56rem; }
   .stats-grid { grid-template-columns: 1fr 1fr; }
+  .stat-sub { font-size: 0.66rem; }
   .footer-grid { grid-template-columns: 1fr; gap: 28px; }
-  .footer-bottom { grid-template-columns: 1fr; justify-items: center; text-align: center; }
+  .footer-bottom { grid-template-columns: 1fr; justify-items: center; text-align: center; gap: 10px; }
   .footer-copy { justify-self: center; text-align: center; }
   .footer-designed-by { justify-self: center !important; text-align: center !important; }
-  .section-heading { font-size: clamp(1.8rem, 6vw, 2.4rem); }
-  .page-hero { padding: 140px 0 72px; }
+  .footer-badges { justify-content: center; }
+  .section-heading { font-size: clamp(1.6rem, 5.5vw, 2.2rem); }
+  .page-hero { padding: 130px 0 60px; }
+  .page-hero h1 { font-size: clamp(1.8rem, 6vw, 2.8rem); }
+  /* hero trust row — wrap and shrink */
+  .hero-trust { gap: 12px; }
+  .hero-trust-sep { display: none; }
+  .hero-trust-item { font-size: 0.72rem; }
+  /* services inline CTAs */
+  .svc-cta { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .svc-cta .btn { width: 100%; max-width: 300px; justify-content: center; }
 }
 @media (max-width: 480px) {
-  :root { --gutter: 16px; }
+  :root { --gutter: 16px; --section-v: 52px; }
   .nav-brand { gap: 7px; }
   .nav-brand img { height: 26px; }
   .nav-brand-name { font-size: 0.72rem; letter-spacing: 0.01em; }
   .nav-brand-sub { display: none; }
-  .stats-grid { grid-template-columns: 1fr 1fr; }
-  .heading-xl { font-size: clamp(2.4rem, 10vw, 3.6rem); }
+  .stats-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .stat-card { padding: 20px 14px; }
+  .stat-value { font-size: clamp(1.6rem, 8vw, 2.2rem); }
+  .heading-xl { font-size: clamp(2rem, 9vw, 3rem); }
   .fab-stack { bottom: 20px; right: 16px; }
+  /* hero title tighter on very small screens */
+  .hero-title { font-size: clamp(1.7rem, 7.5vw, 2.4rem) !important; }
+  .hero-sub { font-size: 0.92rem; }
+  /* section labels smaller */
+  .section-label { font-size: 0.68rem; }
 }
 
 /* ===== CTA BANNER TEXT SPACING ===== */
