@@ -262,15 +262,22 @@
   .cov-grid { grid-template-columns: repeat(2, 1fr); }
   .donut-wrap { justify-content: center; }
   .kpi-tile .val { font-size: 1.45rem; }
+  .widget-head { flex-wrap: wrap; }
+  .bar-name { max-width: 62%; }
 }
 @media (max-width: 600px) {
   .inv-grid { grid-template-columns: 1fr; }
   .clients-logos { grid-template-columns: repeat(2, 1fr); }
-  .inv-controls { flex-direction: column; align-items: stretch; }
+  .inv-controls { flex-direction: column; align-items: stretch; gap: 10px; }
+  .inv-search { flex: 0 0 auto; width: 100%; min-width: 0; }
+  .inv-search input, .sort-wrap select { font-size: 16px; } /* 16px stops iOS tap-zoom */
+  .sort-wrap { width: 100%; }
   .sort-wrap select { width: 100%; }
   #site-modal { padding: 0; }
   .sm-panel { max-height: 100vh; border-radius: 0; height: 100%; }
   .sm-specgrid { grid-template-columns: 1fr; }
+  .sm-actions { flex-direction: column; }
+  .sm-actions .btn { width: 100%; min-width: 0; }
 }
 @media (max-width: 380px) { .kpi-row { grid-template-columns: 1fr; } }
 </style>
