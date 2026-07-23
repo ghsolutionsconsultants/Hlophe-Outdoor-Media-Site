@@ -5,143 +5,325 @@
   <link rel="icon" type="image/png" href="Logo/HOM Logo Default.png">
   <link rel="apple-touch-icon" href="Logo/HOM Logo Default.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portfolio | Hlophe Outdoor Media — Campaigns Across Gauteng</title>
-<meta name="description" content="View Hlophe Outdoor Media's portfolio of outdoor advertising campaigns across Gauteng — featuring work for Colgate, Old Mutual, Cell C, Albany, Heineken and more.">
-<meta name="keywords" content="outdoor advertising portfolio South Africa, billboard campaigns Soweto, Hlophe Outdoor Media work, township advertising examples, OOH campaign gallery">
+<title>Site Network | Hlophe Outdoor Media — Live OOH Inventory Across Gauteng</title>
+<meta name="description" content="Explore Hlophe Outdoor Media's live outdoor advertising inventory — 15 premium billboard and truck-fleet sites across Soweto, Sandton, Tembisa, Pretoria and national routes. Full specs, locations, audience and availability.">
+<meta name="keywords" content="billboard inventory Gauteng, OOH sites Soweto, outdoor advertising locations South Africa, Hlophe Outdoor Media network, billboard rates Johannesburg, township advertising sites">
 <link rel="canonical" href="https://hlophemedia.co.za/portfolio.html">
-<meta property="og:title" content="Portfolio | Hlophe Outdoor Media">
-<meta property="og:description" content="Billboard campaigns, spaza branding, digital OOH and wall murals across Gauteng's township markets.">
+<meta property="og:title" content="Site Network | Hlophe Outdoor Media">
+<meta property="og:description" content="Live OOH inventory across Gauteng — 15 premium sites with full specs, locations and availability.">
 <meta property="og:type" content="website">
 <link rel="stylesheet" href="css/style.css">
 <style>
-/* ===== FILTER TABS ===== */
-.filter-tabs {
-  display: flex; gap: 8px; flex-wrap: wrap;
-  justify-content: center; margin-bottom: 48px;
+/* ============================================================
+   PORTFOLIO — LIVE INVENTORY DASHBOARD
+   ============================================================ */
+
+/* ---- KPI summary bar ---- */
+.kpi-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 4px;
 }
-.filter-tab {
-  padding: 9px 20px; border-radius: 50px; cursor: pointer;
-  font-size: 0.82rem; font-weight: 600; letter-spacing: 0.02em;
+.kpi-card {
+  position: relative;
+  padding: 26px 24px;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+}
+.kpi-card::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse 80% 120% at 100% 0%, rgba(124,58,237,0.16) 0%, transparent 60%);
+}
+.kpi-icon {
+  width: 40px; height: 40px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(124,58,237,0.14); border: 1px solid rgba(124,58,237,0.28);
+  margin-bottom: 16px;
+}
+.kpi-icon svg { width: 20px; height: 20px; color: var(--accent-light); }
+.kpi-value {
+  font-family: 'Syne', sans-serif; font-weight: 800;
+  font-size: clamp(1.8rem, 3.4vw, 2.5rem); line-height: 1;
+  letter-spacing: -0.01em; color: var(--t1);
+  display: flex; align-items: baseline; gap: 4px;
+}
+.kpi-value .u { font-size: 0.9rem; font-weight: 700; color: var(--accent-pale); }
+.kpi-label { margin-top: 8px; font-size: 0.8rem; color: var(--t2); font-weight: 500; }
+.kpi-sub { margin-top: 3px; font-size: 0.68rem; color: var(--t3); letter-spacing: 0.02em; }
+
+/* ---- Controls (search + filter + sort) ---- */
+.inv-controls {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 14px;
+  margin: 44px 0 12px;
+}
+.inv-search {
+  position: relative; flex: 1 1 260px; min-width: 220px;
+}
+.inv-search svg {
+  position: absolute; left: 16px; top: 50%; transform: translateY(-50%);
+  width: 17px; height: 17px; color: var(--t3); pointer-events: none;
+}
+.inv-search input {
+  width: 100%; padding: 13px 16px 13px 44px;
+  background: var(--glass-1); border: 1px solid var(--border-soft);
+  border-radius: 50px; color: var(--t1); font-size: 0.9rem; font-family: inherit;
+  transition: all 0.25s var(--ease-out);
+}
+.inv-search input::placeholder { color: var(--t3); }
+.inv-search input:focus {
+  outline: none; border-color: rgba(124,58,237,0.55);
+  background: var(--glass-2); box-shadow: 0 0 0 4px rgba(124,58,237,0.12);
+}
+.sort-wrap { position: relative; }
+.sort-wrap select {
+  appearance: none; -webkit-appearance: none;
+  padding: 13px 40px 13px 18px;
+  background: var(--glass-1); border: 1px solid var(--border-soft);
+  border-radius: 50px; color: var(--t1); font-size: 0.85rem; font-family: inherit;
+  cursor: pointer; transition: all 0.25s var(--ease-out);
+}
+.sort-wrap select:hover { background: var(--glass-2); border-color: var(--border-bright); }
+.sort-wrap::after {
+  content: ''; position: absolute; right: 18px; top: 50%;
+  width: 8px; height: 8px; border-right: 1.5px solid var(--t3);
+  border-bottom: 1.5px solid var(--t3); transform: translateY(-70%) rotate(45deg);
+  pointer-events: none;
+}
+.sort-wrap select option { background: #12122b; color: var(--t1); }
+
+.region-chips { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; }
+.chip {
+  padding: 8px 16px; border-radius: 50px; cursor: pointer;
+  font-size: 0.78rem; font-weight: 600; letter-spacing: 0.02em;
   background: var(--glass-1); border: 1px solid var(--border-dim);
-  color: var(--t2); transition: all 0.25s var(--ease-out);
+  color: var(--t2); transition: all 0.22s var(--ease-out); white-space: nowrap;
 }
-.filter-tab:hover { background: var(--glass-2); color: var(--t1); border-color: var(--border-soft); }
-.filter-tab.active {
+.chip:hover { background: var(--glass-2); color: var(--t1); border-color: var(--border-soft); }
+.chip .cnt { opacity: 0.55; font-weight: 500; margin-left: 4px; }
+.chip.active {
   background: linear-gradient(135deg, var(--accent), var(--accent-mid));
   border-color: transparent; color: #fff;
-  box-shadow: 0 4px 16px rgba(124,58,237,0.40);
+  box-shadow: 0 4px 16px rgba(124,58,237,0.38);
+}
+.chip.active .cnt { opacity: 0.8; }
+
+.result-count { font-size: 0.8rem; color: var(--t3); margin: 6px 0 26px; }
+.result-count b { color: var(--t1); font-weight: 700; }
+
+/* ---- Inventory grid ---- */
+.inv-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
+}
+.site-card {
+  border-radius: var(--r-lg); overflow: hidden; cursor: pointer;
+  border: 1px solid var(--border-dim); background: var(--glass-1);
+  display: flex; flex-direction: column;
+  transition: border-color 0.3s, transform 0.45s var(--ease-spring), box-shadow 0.3s;
+  opacity: 0; transform: translateY(16px);
+  animation: cardIn 0.55s var(--ease-spring) forwards;
+}
+@keyframes cardIn { to { opacity: 1; transform: none; } }
+.site-card:hover {
+  border-color: rgba(124,58,237,0.42); transform: translateY(-5px);
+  box-shadow: 0 18px 44px rgba(0,0,0,0.4);
+}
+.sc-media { position: relative; aspect-ratio: 16/10; overflow: hidden; background: #0c0c22; }
+.sc-media img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform 0.6s var(--ease-spring);
+}
+.site-card:hover .sc-media img { transform: scale(1.06); }
+.sc-media::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(5,5,26,0.82) 0%, rgba(5,5,26,0.10) 45%, transparent 100%);
+}
+.sc-code {
+  position: absolute; top: 12px; left: 12px; z-index: 2;
+  padding: 5px 11px; border-radius: 50px;
+  background: rgba(5,5,26,0.62); backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.16);
+  font-size: 0.64rem; font-weight: 700; letter-spacing: 0.08em; color: var(--t1);
+  font-family: ui-monospace, 'SF Mono', monospace;
+}
+.sc-avail {
+  position: absolute; top: 12px; right: 12px; z-index: 2;
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 5px 11px; border-radius: 50px;
+  background: rgba(6,60,38,0.55); backdrop-filter: blur(10px);
+  border: 1px solid rgba(16,185,129,0.4);
+  font-size: 0.62rem; font-weight: 700; letter-spacing: 0.05em; color: #6ee7b7;
+}
+.sc-avail .pulse-dot {
+  width: 6px; height: 6px; border-radius: 50%; background: #10b981;
+  box-shadow: 0 0 0 0 rgba(16,185,129,0.6); animation: dotPulse 2s infinite;
+}
+@keyframes dotPulse {
+  0% { box-shadow: 0 0 0 0 rgba(16,185,129,0.55); }
+  70% { box-shadow: 0 0 0 7px rgba(16,185,129,0); }
+  100% { box-shadow: 0 0 0 0 rgba(16,185,129,0); }
+}
+.sc-fmt {
+  position: absolute; left: 12px; bottom: 12px; z-index: 2;
+  font-size: 0.68rem; font-weight: 600; color: var(--t2);
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.sc-fmt svg { width: 13px; height: 13px; color: var(--accent-light); }
+
+.sc-body { padding: 18px 18px 20px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
+.sc-name { font-family: 'Syne', sans-serif; font-size: 1.02rem; font-weight: 700; color: var(--t1); line-height: 1.25; }
+.sc-loc { display: flex; align-items: center; gap: 6px; font-size: 0.8rem; color: var(--t2); }
+.sc-loc svg { width: 13px; height: 13px; color: var(--accent-light); flex-shrink: 0; }
+
+.sc-metrics {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+  padding-top: 12px; margin-top: auto; border-top: 1px solid var(--border-dim);
+}
+.sc-metric .m-label {
+  font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--t3); font-weight: 700; margin-bottom: 3px;
+}
+.sc-metric .m-value { font-size: 0.9rem; font-weight: 700; color: var(--t1); }
+.sc-metric .m-value.sm { font-size: 0.8rem; font-weight: 600; }
+.sc-metric .m-value .hl { color: var(--accent-pale); }
+
+.sc-cta {
+  display: flex; align-items: center; justify-content: space-between;
+  font-size: 0.78rem; font-weight: 600; color: var(--accent-light);
+  padding-top: 4px;
+}
+.sc-cta svg { width: 15px; height: 15px; transition: transform 0.25s; }
+.site-card:hover .sc-cta svg { transform: translateX(4px); }
+
+.no-results {
+  grid-column: 1 / -1; text-align: center; padding: 60px 20px;
+  color: var(--t3); font-size: 0.95rem;
 }
 
-/* ===== PORTFOLIO GRID ===== */
-.portfolio-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-}
-.port-item {
-  border-radius: var(--r-lg); overflow: hidden; position: relative;
-  cursor: pointer; border: 1px solid var(--border-dim);
-  transition: border-color 0.3s, transform 0.4s var(--ease-spring);
-  background: var(--glass-1);
-}
-.port-item:hover { border-color: rgba(124,58,237,0.35); transform: translateY(-4px); }
-.port-item.featured { grid-column: span 2; }
-.port-item img {
-  width: 100%; object-fit: cover; display: block;
-  transition: transform 0.55s var(--ease-spring);
-  min-height: 240px;
-}
-.port-item.featured img { min-height: 380px; }
-.port-item:hover img { transform: scale(1.04); }
-
-.port-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(5,5,26,0.90) 0%, rgba(5,5,26,0.20) 50%, transparent 100%);
-  opacity: 0; transition: opacity 0.3s;
-  display: flex; flex-direction: column; justify-content: flex-end;
-  padding: 24px;
-}
-.port-item:hover .port-overlay { opacity: 1; }
-.port-tag {
-  display: inline-block; padding: 4px 10px; border-radius: 50px; margin-bottom: 8px;
-  background: rgba(124,58,237,0.75); backdrop-filter: blur(8px);
-  font-size: 0.66rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
-  width: fit-content;
-}
-.port-title { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: 4px; }
-.port-client { font-size: 0.8rem; color: var(--t2); }
-
-.port-zoom {
-  position: absolute; top: 14px; right: 14px;
-  width: 34px; height: 34px; border-radius: 50%;
-  background: rgba(255,255,255,0.10); backdrop-filter: blur(8px);
-  border: 1px solid rgba(255,255,255,0.18);
-  display: flex; align-items: center; justify-content: center;
-  color: white; opacity: 0; transition: opacity 0.3s;
-}
-.port-zoom svg { width: 15px; height: 15px; }
-.port-item:hover .port-zoom { opacity: 1; }
-
-/* hide items by filter */
-.port-item[data-cat].hidden { display: none; }
-
-/* ===== LIGHTBOX ===== */
-#lightbox {
+/* ---- Detail modal ---- */
+#site-modal {
   position: fixed; inset: 0; z-index: 2000;
-  background: rgba(0,0,0,0.92); backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  opacity: 0; pointer-events: none; transition: opacity 0.3s; padding: 24px;
+  display: flex; align-items: center; justify-content: center; padding: 24px;
+  opacity: 0; pointer-events: none; transition: opacity 0.3s;
 }
-#lightbox.open { opacity: 1; pointer-events: all; }
-#lightbox img {
-  max-width: 90vw; max-height: 80vh; object-fit: contain;
-  border-radius: var(--r-lg); box-shadow: 0 32px 80px rgba(0,0,0,0.8);
-  display: block;
+#site-modal.open { opacity: 1; pointer-events: all; }
+.sm-backdrop {
+  position: absolute; inset: 0; background: rgba(3,3,15,0.82);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
 }
-#lb-caption {
-  margin-top: 16px; font-size: 0.88rem; color: var(--t2);
-  text-align: center; max-width: 600px; line-height: 1.5;
+.sm-panel {
+  position: relative; z-index: 2; width: 100%; max-width: 1040px;
+  max-height: 90vh; overflow-y: auto; border-radius: var(--r-xl);
+  display: grid; grid-template-columns: 1.15fr 1fr;
+  transform: translateY(20px) scale(0.98); transition: transform 0.35s var(--ease-spring);
 }
-#lb-close {
-  position: absolute; top: 20px; right: 20px;
-  width: 44px; height: 44px; border-radius: 50%;
-  background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.16);
-  color: white; cursor: pointer; font-size: 1.1rem;
-  display: flex; align-items: center; justify-content: center;
+#site-modal.open .sm-panel { transform: none; }
+.sm-panel::-webkit-scrollbar { width: 8px; }
+.sm-panel::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.14); border-radius: 8px; }
+
+.sm-visual { padding: 22px; display: flex; flex-direction: column; gap: 12px; }
+.sm-main-img {
+  width: 100%; border-radius: var(--r-md); aspect-ratio: 16/11;
+  object-fit: cover; background: #0c0c22; display: block;
+}
+.sm-thumbs { display: flex; gap: 10px; }
+.sm-thumb {
+  flex: 1; border-radius: 10px; overflow: hidden; cursor: pointer;
+  border: 1.5px solid transparent; aspect-ratio: 16/10; background: #0c0c22;
+  transition: border-color 0.2s;
+}
+.sm-thumb.active { border-color: var(--accent); }
+.sm-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.sm-thumb-label {
+  font-size: 0.6rem; text-align: center; color: var(--t3);
+  padding: 4px 0 0; letter-spacing: 0.06em; text-transform: uppercase;
+}
+
+.sm-info { padding: 30px 30px 30px 8px; display: flex; flex-direction: column; }
+.sm-code-row { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; flex-wrap: wrap; }
+.sm-code {
+  padding: 5px 11px; border-radius: 50px; background: rgba(124,58,237,0.14);
+  border: 1px solid rgba(124,58,237,0.3); color: var(--accent-pale);
+  font-size: 0.66rem; font-weight: 700; letter-spacing: 0.08em;
+  font-family: ui-monospace, monospace;
+}
+.sm-avail-tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 5px 11px; border-radius: 50px;
+  background: rgba(6,60,38,0.4); border: 1px solid rgba(16,185,129,0.35);
+  font-size: 0.64rem; font-weight: 700; color: #6ee7b7;
+}
+.sm-avail-tag .pulse-dot { width: 6px; height: 6px; border-radius: 50%; background: #10b981; }
+.sm-title { font-family: 'Syne', sans-serif; font-size: 1.55rem; font-weight: 800; color: var(--t1); line-height: 1.15; margin-bottom: 8px; }
+.sm-loc { display: flex; align-items: center; gap: 7px; font-size: 0.86rem; color: var(--t2); margin-bottom: 18px; }
+.sm-loc svg { width: 15px; height: 15px; color: var(--accent-light); }
+.sm-desc { font-size: 0.9rem; color: var(--t2); line-height: 1.62; margin-bottom: 22px; }
+
+.sm-specgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border-dim); border: 1px solid var(--border-dim); border-radius: var(--r-md); overflow: hidden; margin-bottom: 18px; }
+.spec-cell { background: #0b0b20; padding: 13px 15px; }
+.spec-cell.full { grid-column: 1 / -1; }
+.spec-cell .s-label { font-size: 0.6rem; letter-spacing: 0.09em; text-transform: uppercase; color: var(--t3); font-weight: 700; margin-bottom: 4px; display: flex; align-items: center; gap: 5px; }
+.spec-cell .s-label svg { width: 12px; height: 12px; color: var(--accent-light); }
+.spec-cell .s-value { font-size: 0.9rem; font-weight: 600; color: var(--t1); }
+.spec-cell .s-value.hl { color: var(--accent-pale); font-weight: 700; }
+
+.sm-map-wrap { position: relative; border-radius: var(--r-md); overflow: hidden; margin-bottom: 20px; border: 1px solid var(--border-dim); }
+.sm-map-wrap img { width: 100%; display: block; max-height: 180px; object-fit: cover; }
+.sm-map-link {
+  position: absolute; bottom: 12px; right: 12px;
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 9px 15px; border-radius: 50px;
+  background: rgba(5,5,26,0.78); backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.2); color: #fff;
+  font-size: 0.75rem; font-weight: 600; transition: all 0.2s;
+}
+.sm-map-link:hover { background: var(--accent); border-color: var(--accent); }
+.sm-map-link svg { width: 14px; height: 14px; }
+
+.sm-actions { display: flex; gap: 12px; margin-top: auto; flex-wrap: wrap; }
+.sm-actions .btn { flex: 1; min-width: 150px; justify-content: center; }
+
+.sm-close {
+  position: absolute; top: 16px; right: 16px; z-index: 5;
+  width: 40px; height: 40px; border-radius: 50%;
+  background: rgba(5,5,26,0.7); border: 1px solid rgba(255,255,255,0.18);
+  color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center;
   transition: background 0.2s;
 }
-#lb-close:hover { background: rgba(124,58,237,0.40); }
-#lb-close svg { width: 18px; height: 18px; }
+.sm-close:hover { background: rgba(124,58,237,0.5); }
+.sm-close svg { width: 18px; height: 18px; }
 
-/* ===== CLIENTS ===== */
-.clients-logos {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
-}
+/* ---- Clients ---- */
+.clients-logos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
 .client-logo-card {
   padding: 24px 20px; border-radius: var(--r-md);
   display: flex; align-items: center; justify-content: center;
   border: 1px solid var(--border-dim); background: var(--glass-1);
-  filter: grayscale(1) brightness(0.65);
-  transition: all 0.3s var(--ease-out);
-  min-height: 80px;
+  filter: grayscale(1) brightness(0.7);
+  transition: all 0.3s var(--ease-out); min-height: 80px;
 }
-.client-logo-card:hover {
-  filter: none; background: var(--glass-2);
-  border-color: rgba(124,58,237,0.28);
-  transform: translateY(-3px);
-}
+.client-logo-card:hover { filter: none; background: var(--glass-2); border-color: rgba(124,58,237,0.28); transform: translateY(-3px); }
 .client-logo-card img { max-height: 38px; max-width: 120px; object-fit: contain; }
 
-@media(max-width:900px){
-  .portfolio-grid { grid-template-columns: 1fr 1fr; }
-  .port-item.featured { grid-column: span 2; }
-  .clients-logos { grid-template-columns: repeat(3,1fr); }
+/* ---- Responsive ---- */
+@media (max-width: 1100px) { .inv-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 900px) {
+  .kpi-bar { grid-template-columns: 1fr 1fr; }
+  .clients-logos { grid-template-columns: repeat(3, 1fr); }
+  .sm-panel { grid-template-columns: 1fr; max-height: 92vh; }
+  .sm-info { padding: 8px 26px 28px; }
 }
-@media(max-width:600px){
-  .portfolio-grid { grid-template-columns: 1fr; }
-  .port-item.featured { grid-column: span 1; }
-  .clients-logos { grid-template-columns: repeat(2,1fr); }
+@media (max-width: 600px) {
+  .inv-grid { grid-template-columns: 1fr; }
+  .clients-logos { grid-template-columns: repeat(2, 1fr); }
+  .inv-controls { flex-direction: column; align-items: stretch; }
+  .sort-wrap select { width: 100%; }
+  #site-modal { padding: 0; }
+  .sm-panel { max-height: 100vh; border-radius: 0; height: 100%; }
+  .sm-specgrid { grid-template-columns: 1fr; }
+}
+@media (max-width: 460px) {
+  .kpi-bar { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -182,117 +364,82 @@
   <div class="page-hero-bg" aria-hidden="true"></div>
   <div class="container page-hero-content">
     <div class="page-hero-eyebrow">
-      <a href="index.html">Home</a><span class="sep">/</span><span>Portfolio</span>
+      <a href="index.html">Home</a><span class="sep">/</span><span>Site Network</span>
     </div>
-    <h1>Our Work. <span class="text-gradient">Their Results.</span></h1>
-    <p>A selection of campaigns delivered for leading brands across Gauteng's township markets, from Soweto to Tembisa, from static billboards to iconic wall murals.</p>
+    <h1>The Network, <span class="text-gradient">Site by Site.</span></h1>
+    <p>Our live outdoor inventory across Gauteng and national routes. Real locations, real audiences, full specifications. Browse every site, filter by area, and enquire on the exact placements you want. Rates on request.</p>
   </div>
 </div>
 
-<!-- FILTER + GRID -->
-<section class="section-pad" style="padding-top: 20px;">
+<!-- KPI + INVENTORY -->
+<section class="section-pad" style="padding-top: 16px;">
   <div class="container">
-    <div class="filter-tabs reveal" role="tablist" aria-label="Portfolio filter">
-      <button class="filter-tab active" data-filter="all" role="tab" aria-selected="true">All Work</button>
-      <button class="filter-tab" data-filter="billboard" role="tab">Static Billboards</button>
-      <button class="filter-tab" data-filter="mural" role="tab">Wall Murals</button>
-      <button class="filter-tab" data-filter="spaza" role="tab">Spaza Branding</button>
-      <button class="filter-tab" data-filter="digital" role="tab">Digital OOH</button>
+
+    <!-- KPI summary -->
+    <div class="kpi-bar reveal" id="kpi-bar">
+      <div class="kpi-card glass">
+        <div class="kpi-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M12 16v4M8 20h8" stroke-linecap="round"/></svg></div>
+        <div class="kpi-value"><span id="kpi-sites">0</span></div>
+        <div class="kpi-label">Premium sites live</div>
+        <div class="kpi-sub">Billboards + national fleet</div>
+      </div>
+      <div class="kpi-card glass">
+        <div class="kpi-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-5.5-7-11a7 7 0 0114 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
+        <div class="kpi-value"><span id="kpi-regions">0</span></div>
+        <div class="kpi-label">Regions covered</div>
+        <div class="kpi-sub">Gauteng &amp; national</div>
+      </div>
+      <div class="kpi-card glass">
+        <div class="kpi-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l6-6 4 4 8-8" stroke-linecap="round" stroke-linejoin="round"/><path d="M17 7h4v4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="kpi-value"><span id="kpi-traffic">0</span><span class="u" id="kpi-traffic-u"></span></div>
+        <div class="kpi-label">Combined monthly traffic</div>
+        <div class="kpi-sub" id="kpi-traffic-sub">Verified measured sites</div>
+      </div>
+      <div class="kpi-card glass">
+        <div class="kpi-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="kpi-value" style="font-size:clamp(1.1rem,2vw,1.5rem);">Immediate</div>
+        <div class="kpi-label">Availability</div>
+        <div class="kpi-sub">Every site bookable now</div>
+      </div>
     </div>
 
-    <div class="portfolio-grid" id="portfolio-grid">
+    <!-- Region filter -->
+    <div class="region-chips reveal" id="region-chips" style="margin-top:40px;"></div>
 
-      <div class="port-item featured reveal d-100" data-cat="billboard" data-lightbox data-caption="Colgate 'Brushing Confidently' campaign, Jabulani Gate Billboard, Soweto. One of Hlophe's landmark static billboard locations at peak commuter traffic.">
-        <img src="gallery/billboard-colgate.jpeg" alt="Colgate Brushing Confidently billboard at Jabulani Gate — Hlophe Outdoor Media">
-        <div class="port-overlay">
-          <div class="port-tag">Static Billboard</div>
-          <div class="port-title">Colgate, Jabulani Gate</div>
-          <div class="port-client">High-impact entrance billboard serving thousands of daily shoppers and commuters</div>
-        </div>
-        <div class="port-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35" stroke-linecap="round"/></svg></div>
+    <!-- Search + sort -->
+    <div class="inv-controls reveal">
+      <div class="inv-search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35" stroke-linecap="round"/></svg>
+        <input type="search" id="inv-search-input" placeholder="Search by site, area or code…" aria-label="Search sites">
       </div>
-
-      <div class="port-item reveal d-200" data-cat="billboard" data-lightbox data-caption="Old Mutual 'Do Great Things Every Day' billboard campaign positioned above a busy township shopping precinct in Gauteng.">
-        <img src="gallery/billboard-old-mutual.jpeg" alt="Old Mutual outdoor billboard campaign — Hlophe Outdoor Media">
-        <div class="port-overlay">
-          <div class="port-tag">Static Billboard</div>
-          <div class="port-title">Old Mutual</div>
-          <div class="port-client">Premium shopping precinct billboard with elevated sightlines</div>
-        </div>
-        <div class="port-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35" stroke-linecap="round"/></svg></div>
+      <div class="sort-wrap">
+        <select id="inv-sort" aria-label="Sort sites">
+          <option value="traffic">Sort: Highest traffic</option>
+          <option value="name">Sort: Name (A–Z)</option>
+          <option value="region">Sort: Region</option>
+          <option value="size">Sort: Largest format</option>
+        </select>
       </div>
-
-      <div class="port-item reveal d-100" data-cat="billboard" data-lightbox data-caption="Cell C 'South Africa's Number 1 Network' large-format highway billboard on a major Gauteng commuter route serving high daily vehicle traffic.">
-        <img src="gallery/billboard-cell-c.jpg" alt="Cell C South Africa No.1 Network highway billboard — Hlophe Outdoor Media">
-        <div class="port-overlay">
-          <div class="port-tag">Static Billboard</div>
-          <div class="port-title">Cell C, Highway Route</div>
-          <div class="port-client">High-speed commuter route with 50,000+ daily vehicles</div>
-        </div>
-        <div class="port-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35" stroke-linecap="round"/></svg></div>
-      </div>
-
-      <div class="port-item reveal d-200" data-cat="billboard" data-lightbox data-caption="Hyundai brand campaign billboard positioned at a major Gauteng intersection with panoramic visibility and high daily vehicle counts.">
-        <img src="gallery/billboard-hyundai.jpg" alt="Hyundai intersection billboard Gauteng — Hlophe Outdoor Media">
-        <div class="port-overlay">
-          <div class="port-tag">Static Billboard</div>
-          <div class="port-title">Hyundai, Intersection</div>
-          <div class="port-client">Panoramic intersection billboard, elevated position</div>
-        </div>
-        <div class="port-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35" stroke-linecap="round"/></svg></div>
-      </div>
-
-      <div class="port-item featured reveal d-100" data-cat="mural" data-lightbox data-caption="Nkukhu-Box 'Grilled Kasi Flavour' franchise campaign, large-format wall mural in a township residential area generating strong community visibility and social media traction.">
-        <img src="gallery/mural-nkukhu.jpeg" alt="Nkukhu-Box wall mural advertising — Hlophe Outdoor Media">
-        <div class="port-overlay">
-          <div class="port-tag">Wall Mural</div>
-          <div class="port-title">Nkukhu-Box, Franchise Mural</div>
-          <div class="port-client">Full perimeter wall mural spanning 18 metres, community landmark</div>
-        </div>
-        <div class="port-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35" stroke-linecap="round"/></svg></div>
-      </div>
-
-      <div class="port-item reveal d-200" data-cat="spaza" data-lightbox data-caption="Albany Bakeries spaza shop branding in Jabulani, full exterior paint, branded fascia and point-of-sale materials at a high-volume community spaza.">
-        <img src="gallery/spaza-albany.jpeg" alt="Albany spaza shop branding Jabulani — Hlophe Outdoor Media">
-        <div class="port-overlay">
-          <div class="port-tag">Spaza Branding</div>
-          <div class="port-title">Albany Bakeries</div>
-          <div class="port-client">Full exterior rebrand with branded signage and fascia</div>
-        </div>
-        <div class="port-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35" stroke-linecap="round"/></svg></div>
-      </div>
-
-      <div class="port-item reveal d-300" data-cat="billboard" data-lightbox data-caption="Additional Hlophe Outdoor Media billboard site demonstrating our network's breadth across Gauteng's township corridors.">
-        <img src="gallery/billboard-site-1.jpeg" alt="Hlophe Outdoor Media billboard site Gauteng">
-        <div class="port-overlay">
-          <div class="port-tag">Static Billboard</div>
-          <div class="port-title">Gauteng Network Site</div>
-          <div class="port-client">Strategic township corridor location</div>
-        </div>
-        <div class="port-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35" stroke-linecap="round"/></svg></div>
-      </div>
-
-      <div class="port-item reveal d-400" data-cat="billboard" data-lightbox data-caption="Another premier Hlophe Outdoor Media billboard site in the Gauteng township advertising network.">
-        <img src="gallery/billboard-site-2.jpeg" alt="Hlophe Outdoor Media network billboard Gauteng">
-        <div class="port-overlay">
-          <div class="port-tag">Static Billboard</div>
-          <div class="port-title">Gauteng Network Site</div>
-          <div class="port-client">High-traffic township hub location</div>
-        </div>
-        <div class="port-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35" stroke-linecap="round"/></svg></div>
-      </div>
-
     </div>
+
+    <p class="result-count" id="result-count"></p>
+
+    <!-- Grid -->
+    <div class="inv-grid" id="inv-grid"></div>
+
   </div>
 </section>
 
-<!-- LIGHTBOX -->
-<div id="lightbox" role="dialog" aria-label="Image viewer" aria-modal="true">
-  <button id="lb-close" aria-label="Close image viewer">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
-  </button>
-  <img id="lb-img" src="" alt="">
-  <p id="lb-caption"></p>
+<!-- DETAIL MODAL -->
+<div id="site-modal" role="dialog" aria-modal="true" aria-label="Site details">
+  <div class="sm-backdrop"></div>
+  <div class="sm-panel glass-deep" id="sm-panel">
+    <button class="sm-close" id="sm-close" aria-label="Close details">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+    <div class="sm-visual" id="sm-visual"></div>
+    <div class="sm-info" id="sm-info"></div>
+  </div>
 </div>
 
 <div class="divider" style="margin-top:0;"></div>
@@ -301,9 +448,9 @@
 <section class="section-pad">
   <div class="container">
     <div class="section-header">
-      <div class="section-label reveal"><span class="dot"></span>Our Clients</div>
-      <h2 class="section-heading reveal d-100">Brands We've <em>Worked With</em></h2>
-      <p class="section-body reveal d-200">Hlophe Outdoor Media has delivered campaigns for some of South Africa's most recognisable and respected brands.</p>
+      <div class="section-label reveal"><span class="dot"></span>Trusted By</div>
+      <h2 class="section-heading reveal d-100">Brands That've Run<br><em>On Our Network</em></h2>
+      <p class="section-body reveal d-200">From national FMCG to financial services, leading brands use Hlophe Outdoor Media sites to reach high-volume township and urban audiences.</p>
     </div>
     <div class="clients-logos reveal">
       <div class="client-logo-card"><img src="Previous Clients/Absa-logo2.webp" alt="ABSA Bank"></div>
@@ -323,10 +470,10 @@
   <div class="container">
     <div class="cta-banner glass-deep reveal" style="max-width:780px;margin:0 auto;padding:56px 48px;">
       <div class="cta-banner-bg" aria-hidden="true"></div>
-      <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);">Your Brand Belongs<br>in This Portfolio</h2>
-      <p style="font-size:0.96rem;max-width:460px;margin:0 auto 52px;">Join the leading brands already reaching millions of township consumers through Hlophe Outdoor Media's strategic advertising network across Gauteng.</p>
+      <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);">Found Your Sites?<br>Let's Lock Them In</h2>
+      <p style="font-size:0.96rem;max-width:470px;margin:0 auto 52px;">Tell us which placements you want and your flight dates. We'll come back with availability, rates and a full media plan built around your campaign.</p>
       <div class="cta-banner-btns">
-        <a href="contact.html" class="btn btn-primary">Start Your Campaign<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="contact.html" class="btn btn-primary">Request a Media Plan<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         <a href="services.html" class="btn btn-ghost">Explore Services</a>
       </div>
     </div>
@@ -376,24 +523,350 @@
 
 <script src="js/main.js"></script>
 <script>
-/* Portfolio filter */
-(function(){
-  const tabs  = document.querySelectorAll('.filter-tab');
-  const items = document.querySelectorAll('.port-item[data-cat]');
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      tabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected','false'); });
-      tab.classList.add('active'); tab.setAttribute('aria-selected','true');
-      const f = tab.dataset.filter;
-      items.forEach(item => {
-        if (f === 'all' || item.dataset.cat === f) {
-          item.classList.remove('hidden');
-        } else {
-          item.classList.add('hidden');
-        }
+/* ============================================================
+   LIVE INVENTORY — data + dashboard logic
+   Prices intentionally excluded from the dataset.
+   ============================================================ */
+(function () {
+  'use strict';
+
+  const ASSET = 'portfolio-assets/';
+
+  // Traffic figures flagged as unverified in the source deck (identical copy-paste
+  // value across 3 sites). Suppressed from display and excluded from totals.
+  const SUSPECT_TRAFFIC = 102000987;
+
+  const SITES = [
+    { slug:'orlando-soweto', name:'Orlando, Soweto', code:'HOM-SWTP013', area:'Soweto', region:'Soweto',
+      lsm:'LSM 5-8', format:'Static billboard', size:'7m × 25m', traffic:1578765, illum:'No', avail:'Immediately',
+      gps:'26°14\'24.2"S 27°54\'42.8"E',
+      desc:'At the intersection of Klipspruit Valley Road and Vilakazi Street, one of Soweto\'s busiest commuter corridors. Adjacent to a taxi rank and near the train station, with continuous footfall and peak-hour activity all day.',
+      photos:['photo.jpg'], map:'map.jpg' },
+
+    { slug:'maboneng-johannesburg', name:'Maboneng, Johannesburg', code:'HOM-MBN011', area:'Johannesburg CBD', region:'Johannesburg',
+      lsm:'LSM 5-8', format:'Static billboard', size:'5m × 55m', traffic:1406911, illum:'No', avail:'Immediately',
+      gps:'26°12\'11.5"S 28°03\'32.0"E',
+      desc:'On busy Commissioner Street in the Maboneng Precinct, one of Johannesburg\'s most vibrant lifestyle and cultural hubs, with strong urban visibility to heavy vehicle and pedestrian traffic.',
+      photos:['photo.jpg'], map:'map.jpg' },
+
+    { slug:'maboneng-cbd', name:'Maboneng Lifestyle Centre, JHB CBD', code:'HOM-MBN012', area:'Johannesburg CBD', region:'Johannesburg',
+      lsm:'LSM 6-8', format:'Static billboard (double-sided)', size:'Side A 20m × 16m + Side B 20m × 14m', traffic:1406911, illum:'No', avail:'Immediately',
+      gps:'26°12\'12.3"S 28°03\'36.3"E',
+      desc:'In the heart of Maboneng on busy Commissioner Street. Two-sided billboard on the Lifestyle Centre building, with outstanding exposure to heavy vehicle and pedestrian traffic daily.',
+      photos:['photo.jpg'], map:'map.jpg' },
+
+    { slug:'africa-cafe-pimville-soweto', name:'Africa Café, Pimville, Soweto', code:'HOM-PIM012', area:'Pimville, Soweto', region:'Soweto',
+      lsm:'LSM 5-8', format:'Static billboard', size:'4m × 15m', traffic:906987, illum:'No', avail:'Immediately',
+      gps:'26°15\'38.6"S 27°54\'53.3"E',
+      desc:'At the main entrance of Africa Café, a busy social hub in Pimville, with high visibility to all patrons, strong foot traffic and extended exposure during peak periods.',
+      photos:['photo.jpg'], map:'map.jpg' },
+
+    { slug:'kyalami-shisanyama-midrand', name:'Kyalami Shisanyama, Midrand', code:'HOM-KYN010', area:'Midrand', region:'Midrand',
+      lsm:'LSM 5-8', format:'Static billboard', size:'5m × 20m', traffic:876987, illum:'No', avail:'Immediately',
+      gps:'26°00\'10.6"S 28°04\'29.2"E',
+      desc:'At the main entrance of Kyalami Shisanyama: every arriving guest sees it. Constant foot and vehicle traffic, slow entry movement and a vibrant social crowd in a premium nightlife environment.',
+      photos:['photo.jpg'], map:'map.jpg' },
+
+    { slug:'centurion-shisanyama', name:'Centurion Shisanyama, Centurion', code:'HOM-CYN011', area:'Centurion', region:'Centurion',
+      lsm:'LSM 5-8', format:'Static billboard (roof-level)', size:'2.5m × 20m', traffic:860900, illum:'No', avail:'Immediately',
+      gps:'25°51\'32.7"S 28°11\'28.5"E',
+      desc:'Roof-level placement inside Centurion Shisanyama, commanding full visibility across the venue. Extended dwell times deliver strong recall and repeated exposure to a lively, high-traffic audience.',
+      photos:['photo.jpg'], map:'map.jpg' },
+
+    { slug:'tembisa-plaza', name:'Tembisa Plaza, Tembisa', code:'HOM-TMB01', area:'Tembisa', region:'Tembisa',
+      lsm:'LSM 5-8', format:'Static billboard', size:'8m × 40m', traffic:810005, illum:'No', avail:'Immediately',
+      gps:'26°01\'39.0"S 28°11\'38.1"E',
+      desc:'Large-format site on Andrew Mapheto Drive, directly between Tembisa Plaza and Birch Acres Mall. High daily volumes of motorists, taxi commuters and pedestrians moving between the two major retail hubs.',
+      photos:['photo.jpg'], map:'map.jpg' },
+
+    { slug:'alex-plaza-alexandra', name:'Alex Plaza & Shopping Centre, Alexandra', code:'HOM-ALX001', area:'Alexandra', region:'Alexandra',
+      lsm:'LSM 5-8', format:'Static billboard', size:'5m × 40m', traffic:700880, illum:'No', avail:'Immediately',
+      gps:'26°06\'22.4"S 28°05\'13.6"E',
+      desc:'Between Alexandra Plaza and Pan Africa Shopping Centre, next to the busy Alexandra taxi rank, with continuous exposure to commuters, shoppers and motorists moving between the two hubs.',
+      photos:['photo.jpg','photo-2.jpg'], map:'map.jpg' },
+
+    { slug:'atlyn-mall-atteridgeville', name:'Atlyn Mall, Atteridgeville', code:'HOM-ATTR001', area:'Atteridgeville, Pretoria', region:'Pretoria',
+      lsm:'LSM 5-8', format:'Static billboard', size:'8m × 30m', traffic:670987, illum:'No', avail:'Immediately',
+      gps:'25°46\'29.0"S 28°05\'23.1"E',
+      desc:'On Maunde Street, the main entrance into Atteridgeville, next to Atlyn Shopping Centre, the area\'s largest retail hub, and near Tshwane South TVET College. Daily exposure to shoppers, students and commuters.',
+      photos:['photo.jpg'], map:'map.jpg' },
+
+    { slug:'jabulani-mall-soweto', name:'Jabulani Mall, Soweto', code:'HOM-SWT004', area:'Soweto', region:'Soweto',
+      lsm:'LSM 5-8', format:'Static billboard (double-sided)', size:'2m × 10m', traffic:661980, illum:'Yes', avail:'Immediately',
+      gps:'26°14\'55.5"S 27°51\'26.3"E',
+      desc:'Double-sided site at the main entrance of Jabulani Mall, corner of Koma and Bolani Road. Jabulani Mall is a dominant retail centre with over 100 stores at the heart of Soweto.',
+      photos:['photo.jpg'], map:'map.jpg' },
+
+    { slug:'protea-glen-mall-soweto', name:'Protea Glen Mall, Soweto', code:'HOM-SWTP010', area:'Soweto', region:'Soweto',
+      lsm:'LSM 5-8', format:'Static billboard', size:'8m × 30m', traffic:500765, illum:'No', avail:'Immediately',
+      gps:'26°16\'54.4"S 27°48\'52.1"E',
+      desc:'Right next to Protea Glen Mall, facing R558 traffic connecting Krugersdorp with Ennerdale via the N12, the main road feeding Dobsonville, Doornkop, Lufhereng, Kagiso, Jabulani, Zola and Emdeni.',
+      photos:['photo.jpg'], map:'map.jpg' },
+
+    { slug:'china-mall-main-reef-rd', name:'China Mall, Main Reef Rd', code:'HOM-CHN001', area:'Johannesburg', region:'Johannesburg',
+      lsm:'LSM 5-8', format:'Static billboard', size:'5m × 30m', traffic:SUSPECT_TRAFFIC, illum:'No', avail:'Immediately',
+      gps:'26°12\'56.0"S 28°00\'08.8"E',
+      desc:'On high-traffic Main Reef Road, directly next to China Mall Johannesburg, giving nonstop exposure to commuters, traders and shoppers every day.',
+      photos:['photo.jpg'], map:'map.jpg' },
+
+    { slug:'wierda-valley-sandton', name:'Wierda Valley, Sandton', code:'HOM-SNDT001', area:'Sandton', region:'Sandton',
+      lsm:'LSM 5-8', format:'Static billboard', size:'5m × 30m', traffic:SUSPECT_TRAFFIC, illum:'No', avail:'Immediately',
+      gps:'26°06\'40.7"S 28°03\'22.4"E',
+      desc:'Corner of Katherine Street and Pybus Road, inside Africa\'s leading financial district. A constant flow of affluent professionals and high-value consumers, with heavy traffic and extended dwell times.',
+      photos:['photo.jpg'], map:'map.jpg' },
+
+    { slug:'glenanda-jhb-south', name:'Glenanda Shopping Centre, JHB South', code:'HOM-GLD010', area:'Johannesburg South', region:'Johannesburg',
+      lsm:'LSM 5-8', format:'Static billboard (hotel wrap)', size:'6m × 39m', traffic:SUSPECT_TRAFFIC, illum:'No', avail:'Immediately',
+      gps:'26°16\'16.0"S 28°02\'15.1"E',
+      desc:'On Voster Avenue opposite Glenanda Village Shopping Centre, fully wrapping the Glenanda Hotel. The only billboard in the area, giving complete category exclusivity with zero media clutter.',
+      photos:['photo.jpg','photo-2.jpg'], map:'map.jpg' },
+
+    { slug:'national-truck-fleet', name:'National Long-Haul Truck Fleet', code:'HOM-TRCK 1-15', area:'National routes', region:'National',
+      lsm:'LSM 3-10', format:'Full truck wrap (flat-sided) · 15 trucks', size:'2.5m × 15m per truck', traffic:5906007, illum:'N/A', avail:'Immediately',
+      gps:'', travelling:'18 000 km per month, nationally',
+      desc:'A bold large-trailer canvas ideal for national brand campaigns. 15 fully wrapped trucks travelling 18 000 km per month, delivering repeated exposure to motorists and roadside audiences across urban and rural South Africa.',
+      photos:['photo.jpg'], map:null }
+  ];
+
+  /* ---------- helpers ---------- */
+  const isSuspect = s => s.traffic === SUSPECT_TRAFFIC;
+  const fmtInt = n => n.toLocaleString('en-ZA').replace(/,/g, ' ');
+  const fmtCompact = n => {
+    if (n >= 1e6) return (n / 1e6).toFixed(n >= 1e7 ? 0 : 1);
+    if (n >= 1e3) return Math.round(n / 1e3) + 'k';
+    return String(n);
+  };
+  const sizeWidth = s => {
+    // pull the largest metre number from the size string, for sorting
+    const nums = (s.size.match(/[\d.]+/g) || []).map(parseFloat);
+    return nums.length ? Math.max.apply(null, nums) : 0;
+  };
+  const mapsUrl = gps => 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(gps);
+
+  /* ---------- KPI header ---------- */
+  const regions = [...new Set(SITES.map(s => s.region))];
+  const measured = SITES.filter(s => !isSuspect(s));
+  const totalTraffic = measured.reduce((sum, s) => sum + s.traffic, 0);
+
+  function countUp(el, target, fmt, dur) {
+    const start = performance.now();
+    const step = ts => {
+      const p = Math.min((ts - start) / dur, 1);
+      const e = 1 - Math.pow(1 - p, 3);
+      el.textContent = fmt(target * e);
+      if (p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }
+  const kpiBar = document.getElementById('kpi-bar');
+  let kpiDone = false;
+  const runKpi = () => {
+    if (kpiDone) return; kpiDone = true;
+    countUp(document.getElementById('kpi-sites'), SITES.length, v => String(Math.floor(v)), 1400);
+    countUp(document.getElementById('kpi-regions'), regions.length, v => String(Math.floor(v)), 1400);
+    const tM = totalTraffic / 1e6;
+    document.getElementById('kpi-traffic-u').textContent = 'M+';
+    countUp(document.getElementById('kpi-traffic'), tM, v => v.toFixed(1), 1600);
+    document.getElementById('kpi-traffic-sub').textContent =
+      'Cars / month · ' + measured.length + ' measured sites';
+  };
+  if ('IntersectionObserver' in window) {
+    const ko = new IntersectionObserver((ents) => {
+      ents.forEach(e => { if (e.isIntersecting) { runKpi(); ko.disconnect(); } });
+    }, { threshold: 0.4 });
+    ko.observe(kpiBar);
+  } else { runKpi(); }
+
+  /* ---------- Region chips ---------- */
+  const chipsWrap = document.getElementById('region-chips');
+  const regionCounts = {};
+  SITES.forEach(s => { regionCounts[s.region] = (regionCounts[s.region] || 0) + 1; });
+  const regionOrder = ['All', ...regions.sort((a, b) => regionCounts[b] - regionCounts[a])];
+  let activeRegion = 'All';
+  regionOrder.forEach((r, i) => {
+    const b = document.createElement('button');
+    b.className = 'chip' + (i === 0 ? ' active' : '');
+    b.dataset.region = r;
+    const cnt = r === 'All' ? SITES.length : regionCounts[r];
+    b.innerHTML = r + ' <span class="cnt">' + cnt + '</span>';
+    b.addEventListener('click', () => {
+      activeRegion = r;
+      chipsWrap.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+      b.classList.add('active');
+      render();
+    });
+    chipsWrap.appendChild(b);
+  });
+
+  /* ---------- State + controls ---------- */
+  const grid = document.getElementById('inv-grid');
+  const searchInput = document.getElementById('inv-search-input');
+  const sortSelect = document.getElementById('inv-sort');
+  const resultCount = document.getElementById('result-count');
+  let query = '', sortBy = 'traffic';
+
+  searchInput.addEventListener('input', () => { query = searchInput.value.toLowerCase().trim(); render(); });
+  sortSelect.addEventListener('change', () => { sortBy = sortSelect.value; render(); });
+
+  function currentList() {
+    let list = SITES.slice();
+    if (activeRegion !== 'All') list = list.filter(s => s.region === activeRegion);
+    if (query) list = list.filter(s =>
+      (s.name + ' ' + s.area + ' ' + s.code + ' ' + s.format + ' ' + s.region).toLowerCase().includes(query));
+    list.sort((a, b) => {
+      if (sortBy === 'name') return a.name.localeCompare(b.name);
+      if (sortBy === 'region') return a.region.localeCompare(b.region) || a.name.localeCompare(b.name);
+      if (sortBy === 'size') return sizeWidth(b) - sizeWidth(a);
+      // traffic (suspect sinks to the bottom)
+      const ta = isSuspect(a) ? -1 : a.traffic;
+      const tb = isSuspect(b) ? -1 : b.traffic;
+      return tb - ta;
+    });
+    return list;
+  }
+
+  const pinSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-5.5-7-11a7 7 0 0114 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>';
+  const fmtSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="12" rx="1.5"/><path d="M12 17v3M8 20h8" stroke-linecap="round"/></svg>';
+
+  function cardHtml(s, i) {
+    const trafficCell = isSuspect(s)
+      ? '<div class="m-value sm"><span class="hl">High-traffic</span> corridor</div>'
+      : '<div class="m-value">' + fmtInt(s.traffic) + '</div>';
+    const trafficLabel = isSuspect(s) ? 'Audience' : 'Cars / month';
+    return '' +
+      '<article class="site-card" data-slug="' + s.slug + '" style="animation-delay:' + (i * 45) + 'ms" tabindex="0" role="button" aria-label="View details for ' + s.name + '">' +
+        '<div class="sc-media">' +
+          '<span class="sc-code">' + s.code + '</span>' +
+          '<span class="sc-avail"><span class="pulse-dot"></span>Available</span>' +
+          '<span class="sc-fmt">' + fmtSvg + s.format.replace(/\s*\(.*\)/, '') + '</span>' +
+          '<img src="' + ASSET + s.slug + '/' + s.photos[0] + '" alt="' + s.name + ' — Hlophe Outdoor Media site" loading="lazy">' +
+        '</div>' +
+        '<div class="sc-body">' +
+          '<h3 class="sc-name">' + s.name + '</h3>' +
+          '<div class="sc-loc">' + pinSvg + s.area + '</div>' +
+          '<div class="sc-metrics">' +
+            '<div class="sc-metric"><div class="m-label">Dimensions</div><div class="m-value sm">' + s.size.replace(/ \+ .*/, ' +…') + '</div></div>' +
+            '<div class="sc-metric"><div class="m-label">Audience</div><div class="m-value sm">' + s.lsm + '</div></div>' +
+            '<div class="sc-metric"><div class="m-label">' + trafficLabel + '</div>' + trafficCell + '</div>' +
+            '<div class="sc-metric"><div class="m-label">Illuminated</div><div class="m-value sm">' + s.illum + '</div></div>' +
+          '</div>' +
+          '<div class="sc-cta">View site details<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>' +
+        '</div>' +
+      '</article>';
+  }
+
+  function render() {
+    const list = currentList();
+    if (!list.length) {
+      grid.innerHTML = '<div class="no-results">No sites match your filters. Try a different area or clear the search.</div>';
+      resultCount.innerHTML = 'Showing <b>0</b> sites';
+      return;
+    }
+    grid.innerHTML = list.map(cardHtml).join('');
+    resultCount.innerHTML = 'Showing <b>' + list.length + '</b> of ' + SITES.length + ' sites' +
+      (activeRegion !== 'All' ? ' in <b>' + activeRegion + '</b>' : '');
+    grid.querySelectorAll('.site-card').forEach(card => {
+      card.addEventListener('click', () => openModal(card.dataset.slug));
+      card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openModal(card.dataset.slug); } });
+    });
+  }
+
+  /* ---------- Detail modal ---------- */
+  const modal = document.getElementById('site-modal');
+  const smVisual = document.getElementById('sm-visual');
+  const smInfo = document.getElementById('sm-info');
+  const boltSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" stroke-linejoin="round"/></svg>';
+  const gpsSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-5.5-7-11a7 7 0 0114 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>';
+  const extSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+  function specCell(label, value, icon, hl, full) {
+    return '<div class="spec-cell' + (full ? ' full' : '') + '">' +
+      '<div class="s-label">' + (icon || '') + label + '</div>' +
+      '<div class="s-value' + (hl ? ' hl' : '') + '">' + value + '</div></div>';
+  }
+
+  function openModal(slug) {
+    const s = SITES.find(x => x.slug === slug);
+    if (!s) return;
+
+    // visual column: main image + thumbnails (extra photo + map)
+    const gallery = s.photos.map(p => ASSET + s.slug + '/' + p);
+    if (s.map) gallery.push(ASSET + s.slug + '/' + s.map);
+    const labels = s.photos.map((_, i) => i === 0 ? 'Site' : 'View ' + (i + 1));
+    if (s.map) labels.push('Location');
+
+    let thumbs = '';
+    if (gallery.length > 1) {
+      thumbs = '<div class="sm-thumbs">' + gallery.map((g, i) =>
+        '<div><div class="sm-thumb' + (i === 0 ? ' active' : '') + '" data-img="' + g + '"><img src="' + g + '" alt="' + labels[i] + '"></div>' +
+        '<div class="sm-thumb-label">' + labels[i] + '</div></div>').join('') + '</div>';
+    }
+    smVisual.innerHTML =
+      '<img class="sm-main-img" id="sm-main-img" src="' + gallery[0] + '" alt="' + s.name + '">' + thumbs;
+
+    // info column
+    const trafficVal = isSuspect(s)
+      ? 'High-traffic corridor <span style="color:var(--t3);font-weight:500;font-size:0.78rem;">(figure being verified)</span>'
+      : fmtInt(s.traffic) + ' cars / month';
+
+    let specs = '';
+    specs += specCell('Format', s.format, boltSvg);
+    specs += specCell('Dimensions', s.size, null, true);
+    specs += specCell('Audience', s.lsm, null);
+    specs += specCell('Illumination', s.illum, null);
+    specs += specCell('Est. traffic', trafficVal, null, !isSuspect(s), true);
+    if (s.travelling) specs += specCell('Coverage', s.travelling, null, true, true);
+    specs += specCell('Availability', s.avail, null);
+    specs += specCell('Site code', s.code, null);
+
+    let mapBlock = '';
+    if (s.map && s.gps) {
+      mapBlock =
+        '<div class="sm-map-wrap">' +
+          '<img src="' + ASSET + s.slug + '/' + s.map + '" alt="Location map for ' + s.name + '">' +
+          '<a class="sm-map-link" href="' + mapsUrl(s.gps) + '" target="_blank" rel="noopener">' + extSvg + 'Open in Google Maps</a>' +
+        '</div>' +
+        '<div class="spec-cell full" style="border:1px solid var(--border-dim);border-radius:var(--r-md);margin-bottom:18px;">' +
+          '<div class="s-label">' + gpsSvg + 'GPS coordinates</div>' +
+          '<div class="s-value" style="font-family:ui-monospace,monospace;font-size:0.82rem;">' + s.gps + '</div>' +
+        '</div>';
+    }
+
+    smInfo.innerHTML =
+      '<div class="sm-code-row"><span class="sm-code">' + s.code + '</span>' +
+        '<span class="sm-avail-tag"><span class="pulse-dot"></span>Available now</span></div>' +
+      '<h2 class="sm-title">' + s.name + '</h2>' +
+      '<div class="sm-loc">' + gpsSvg + (s.area === s.region ? s.area : s.area + ' · ' + s.region) + '</div>' +
+      '<p class="sm-desc">' + s.desc + '</p>' +
+      '<div class="sm-specgrid">' + specs + '</div>' +
+      mapBlock +
+      '<div class="sm-actions">' +
+        '<a class="btn btn-primary" href="contact.html?site=' + encodeURIComponent(s.code) + '">Enquire about this site' +
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>' +
+        '<a class="btn btn-ghost" href="tel:+27814297622">Call to book</a>' +
+      '</div>';
+
+    // thumbnail switching
+    smVisual.querySelectorAll('.sm-thumb').forEach(t => {
+      t.addEventListener('click', () => {
+        document.getElementById('sm-main-img').src = t.dataset.img;
+        smVisual.querySelectorAll('.sm-thumb').forEach(x => x.classList.remove('active'));
+        t.classList.add('active');
       });
     });
-  });
+
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    document.getElementById('sm-panel').scrollTop = 0;
+  }
+
+  function closeModal() { modal.classList.remove('open'); document.body.style.overflow = ''; }
+  document.getElementById('sm-close').addEventListener('click', closeModal);
+  modal.querySelector('.sm-backdrop').addEventListener('click', closeModal);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && modal.classList.contains('open')) closeModal(); });
+
+  /* ---------- init ---------- */
+  render();
 })();
 </script>
 </body>
