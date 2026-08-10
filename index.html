@@ -29,7 +29,7 @@
 
 <style>
 /* ============================================================
-   CINEMATIC INTRO — "the board lights up"
+   CINEMATIC INTRO — "the board lights up"  (~5s title sequence)
    Hidden unless JS opts in, so no-JS users are never blocked.
    ============================================================ */
 #hom-intro { display: none; }
@@ -38,155 +38,282 @@ html.intro-lock, html.intro-lock body { overflow: hidden; height: 100%; }
 
 #hom-intro {
   position: fixed; inset: 0; z-index: 99999;
-  background: transparent;          /* the curtains provide the opaque backdrop */
+  background: transparent;            /* curtains provide the opaque backdrop */
   overflow: hidden;
   font-family: 'Syne', sans-serif;
+  perspective: 1400px;
 }
-/* ambient glow behind the board */
+/* ambient glow */
 #hom-intro::before {
   content: ''; position: absolute; inset: 0; z-index: 1;
   background:
-    radial-gradient(ellipse 60% 45% at 50% 50%, rgba(124,58,237,0.18) 0%, transparent 70%),
-    radial-gradient(ellipse 90% 60% at 50% 120%, rgba(109,40,217,0.12) 0%, transparent 70%);
-  opacity: 0; animation: introGlow 1.2s 0.45s ease-out forwards;
+    radial-gradient(ellipse 55% 42% at 50% 50%, rgba(124,58,237,0.20) 0%, transparent 70%),
+    radial-gradient(ellipse 90% 60% at 50% 118%, rgba(109,40,217,0.13) 0%, transparent 70%);
+  opacity: 0; animation: introGlow 1.6s 0.5s ease-out forwards;
+}
+/* vignette */
+#hom-intro::after {
+  content: ''; position: absolute; inset: 0; z-index: 3; pointer-events: none;
+  background: radial-gradient(ellipse 78% 68% at 50% 50%, transparent 40%, rgba(0,0,0,0.55) 100%);
 }
 @keyframes introGlow { to { opacity: 1; } }
 
 .intro-stage {
   position: absolute; inset: 0; z-index: 2;
   display: flex; align-items: center; justify-content: center;
-  animation: introPush 0.9s 2.55s cubic-bezier(0.7,0,0.84,0) forwards;
+  transform-style: preserve-3d;
+  animation: introPush 0.95s 4.35s cubic-bezier(0.7,0,0.84,0) forwards;
 }
-@keyframes introPush { to { transform: scale(1.14); opacity: 0; } }
+@keyframes introPush { to { transform: scale(1.22); opacity: 0; filter: blur(6px); } }
 
-/* 1 — the ignition line */
+/* ---- 1. ignition filament ---- */
 .intro-line {
   position: absolute; top: 50%; left: 0; right: 0; margin: 0 auto;
-  width: min(620px, 80vw); height: 2px;
-  background: linear-gradient(90deg, transparent, #a78bfa 22%, #fff 50%, #a78bfa 78%, transparent);
-  box-shadow: 0 0 28px rgba(167,139,250,0.85);
+  width: min(660px, 82vw); height: 2px;
+  background: linear-gradient(90deg, transparent, #a78bfa 20%, #fff 50%, #a78bfa 80%, transparent);
+  box-shadow: 0 0 30px rgba(167,139,250,0.9), 0 0 70px rgba(124,58,237,0.5);
   transform: scaleX(0); transform-origin: center;
-  animation: introIgnite 0.72s cubic-bezier(0.16,1,0.3,1) forwards,
-             introLineOut 0.45s 0.78s ease-out forwards;
+  animation: introIgnite 0.85s 0.30s cubic-bezier(0.16,1,0.3,1) forwards,
+             introLineOut 0.5s 1.05s ease-out forwards;
 }
-@keyframes introIgnite { 0% { transform: scaleX(0); opacity: 0; } 18% { opacity: 1; } 100% { transform: scaleX(1); opacity: 1; } }
+@keyframes introIgnite { 0% { transform: scaleX(0); opacity: 0; } 16% { opacity: 1; } 100% { transform: scaleX(1); opacity: 1; } }
 @keyframes introLineOut { to { opacity: 0; } }
 
-/* 2 — the board opens */
+/* ---- 2. lens flare bloom at the strike ---- */
+.intro-flare {
+  position: absolute; top: 50%; left: 50%; z-index: 2;
+  width: 420px; height: 420px; margin: -210px 0 0 -210px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(221,214,254,0.55) 0%, rgba(124,58,237,0.20) 38%, transparent 70%);
+  opacity: 0; pointer-events: none;
+  animation: introFlare 1.3s 0.45s ease-out forwards;
+}
+@keyframes introFlare {
+  0% { opacity: 0; transform: scale(0.35); }
+  30% { opacity: 0.95; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1.6); }
+}
+
+/* ---- 3. the board opens, then settles out of a 3D tilt ---- */
 .intro-frame {
   position: relative;
-  width: min(620px, 80vw);
-  height: min(340px, 46vw);
-  border: 1px solid rgba(167,139,250,0.30);
-  border-radius: 4px;
-  background: linear-gradient(160deg, rgba(124,58,237,0.10), rgba(255,255,255,0.02) 60%, transparent);
-  box-shadow: 0 0 60px rgba(124,58,237,0.22), inset 0 1px 0 rgba(255,255,255,0.10);
+  width: min(660px, 82vw);
+  height: min(360px, 48vw);
+  border: 1px solid rgba(167,139,250,0.32);
+  border-radius: 5px;
+  background: linear-gradient(158deg, rgba(124,58,237,0.13), rgba(255,255,255,0.025) 58%, transparent);
+  box-shadow: 0 0 70px rgba(124,58,237,0.26), 0 30px 90px rgba(0,0,0,0.55),
+              inset 0 1px 0 rgba(255,255,255,0.12);
   clip-path: inset(50% 0 50% 0);
-  animation: introOpen 0.8s 0.58s cubic-bezier(0.16,1,0.3,1) forwards;
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   overflow: hidden;
+  animation: introOpen 1.0s 0.90s cubic-bezier(0.16,1,0.3,1) forwards;
 }
-@keyframes introOpen { to { clip-path: inset(0 0 0 0); } }
 
-/* corner ticks */
+/* the whole billboard (face + legs) settles out of a tilt, then drifts toward camera */
+.intro-board {
+  display: flex; flex-direction: column; align-items: center;
+  transform-style: preserve-3d;
+  animation:
+    introSettle 1.1s 0.90s cubic-bezier(0.16,1,0.3,1) forwards,
+    introDrift  2.35s 2.00s ease-out forwards;   /* declared last so it wins after 2s */
+}
+
+/* ---- billboard support structure ---- */
+.intro-legs {
+  position: relative; width: min(660px, 82vw);
+  height: clamp(54px, 8.5vw, 92px);
+  opacity: 0; animation: introLegs 0.85s 1.95s ease-out forwards;
+}
+.intro-legs span {
+  position: absolute; top: -2px; width: 5px; height: 100%;
+  background: linear-gradient(180deg, rgba(167,139,250,0.45) 0%, rgba(124,58,237,0.16) 62%, transparent 100%);
+}
+.intro-legs span.l { left: 27%; }
+.intro-legs span.r { right: 27%; }
+.intro-legs b {           /* cross brace */
+  position: absolute; top: 40%; left: 27%; right: 27%; height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(167,139,250,0.30), transparent);
+}
+@keyframes introLegs { to { opacity: 1; } }
+
+/* ---- traffic passing beneath: long-exposure light trails ---- */
+.intro-traffic {
+  position: absolute; left: 0; right: 0; bottom: 9%;
+  height: clamp(84px, 15vh, 160px); z-index: 1;
+  pointer-events: none; overflow: hidden;
+  opacity: 0; animation: introTraffic 1.0s 2.20s ease-out forwards;
+}
+@keyframes introTraffic { to { opacity: 1; } }
+/* road glow + horizon */
+.intro-traffic::before {
+  content: ''; position: absolute; left: 0; right: 0; top: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(167,139,250,0.45), transparent);
+}
+.intro-traffic::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(124,58,237,0.10), transparent 70%);
+}
+.streak {
+  position: absolute; border-radius: 99px;
+  filter: blur(0.7px);
+  animation-timing-function: linear; animation-iteration-count: infinite;
+}
+.streak.hl { background: linear-gradient(90deg, transparent, rgba(255,255,255,0.95) 45%, rgba(196,181,253,0.65) 75%, transparent); animation-name: streakR; }
+.streak.tl { background: linear-gradient(90deg, transparent, rgba(255,92,104,0.85) 45%, rgba(255,140,90,0.45) 75%, transparent); animation-name: streakL; }
+@keyframes streakR { from { transform: translateX(-40vw); } to { transform: translateX(140vw); } }
+@keyframes streakL { from { transform: translateX(140vw); } to { transform: translateX(-40vw); } }
+@keyframes introOpen   { to { clip-path: inset(0 0 0 0); } }
+@keyframes introSettle { from { transform: perspective(1400px) rotateX(9deg) scale(0.955); } to { transform: perspective(1400px) rotateX(0deg) scale(1); } }
+@keyframes introDrift  { from { transform: perspective(1400px) scale(1); } to { transform: perspective(1400px) scale(1.045); } }
+
+/* corner ticks, staggered */
 .intro-frame i {
-  position: absolute; width: 14px; height: 14px;
-  border: 0 solid rgba(196,181,253,0.85);
-  opacity: 0; animation: introTick 0.5s 1.25s ease-out forwards;
+  position: absolute; width: 16px; height: 16px;
+  border: 0 solid rgba(196,181,253,0.9);
+  opacity: 0; animation: introTick 0.5s ease-out forwards;
 }
-.intro-frame i.tl { top: 9px; left: 9px;  border-top-width: 1.5px; border-left-width: 1.5px; }
-.intro-frame i.tr { top: 9px; right: 9px; border-top-width: 1.5px; border-right-width: 1.5px; }
-.intro-frame i.bl { bottom: 9px; left: 9px;  border-bottom-width: 1.5px; border-left-width: 1.5px; }
-.intro-frame i.br { bottom: 9px; right: 9px; border-bottom-width: 1.5px; border-right-width: 1.5px; }
-@keyframes introTick { to { opacity: 1; } }
+.intro-frame i.tl { top: 10px; left: 10px;  border-top-width: 1.5px; border-left-width: 1.5px;  animation-delay: 1.70s; }
+.intro-frame i.tr { top: 10px; right: 10px; border-top-width: 1.5px; border-right-width: 1.5px; animation-delay: 1.78s; }
+.intro-frame i.bl { bottom: 10px; left: 10px;  border-bottom-width: 1.5px; border-left-width: 1.5px;  animation-delay: 1.86s; }
+.intro-frame i.br { bottom: 10px; right: 10px; border-bottom-width: 1.5px; border-right-width: 1.5px; animation-delay: 1.94s; }
+@keyframes introTick { from { opacity: 0; transform: scale(1.6); } to { opacity: 1; transform: none; } }
 
-/* 3 — logo */
+/* ---- 4. logo ---- */
 .intro-logo {
-  width: clamp(38px, 7vw, 52px); height: auto; display: block;
+  width: clamp(40px, 7vw, 56px); height: auto; display: block;
   margin-bottom: clamp(12px, 2.2vw, 20px);
-  opacity: 0; transform: translateY(10px) scale(0.9);
-  animation: introLogo 0.7s 1.05s cubic-bezier(0.16,1,0.3,1) forwards;
+  opacity: 0; transform: translateY(14px) scale(0.86); filter: blur(8px);
+  animation: introLogo 0.85s 1.75s cubic-bezier(0.16,1,0.3,1) forwards;
 }
-@keyframes introLogo { to { opacity: 1; transform: none; } }
+@keyframes introLogo { to { opacity: 1; transform: none; filter: blur(0); } }
 
-/* 4 — wordmark, masked line-by-line */
-.intro-words { display: flex; flex-direction: column; align-items: center; gap: 2px; }
-.intro-words .iw { overflow: hidden; }
-.intro-words .iw span {
+/* ---- 5. wordmark, per-letter blur-in (letters injected by JS) ---- */
+.intro-words { display: flex; flex-direction: column; align-items: center; gap: 1px; }
+.intro-words .iw { overflow: hidden; padding: 0 2px; }
+.intro-words .iw > span {
   display: block;
-  font-size: clamp(1.35rem, 4.6vw, 2.5rem);
-  font-weight: 800; letter-spacing: 0.06em; line-height: 1.08;
+  font-size: clamp(1.4rem, 4.8vw, 2.65rem);
+  font-weight: 800; letter-spacing: 0.06em; line-height: 1.1;
   color: rgba(255,255,255,0.97);
-  transform: translateY(110%);
-  animation: introWord 0.72s cubic-bezier(0.16,1,0.3,1) forwards;
+  white-space: nowrap;
 }
-.intro-words .iw:nth-child(1) span { animation-delay: 1.20s; }
-.intro-words .iw:nth-child(2) span { animation-delay: 1.32s; }
-.intro-words .iw:nth-child(3) span { animation-delay: 1.44s; color: var(--accent-pale, #c4b5fd); }
-@keyframes introWord { to { transform: translateY(0); } }
+.intro-words .iw:nth-child(3) > span { color: var(--accent-pale, #c4b5fd); }
+.intro-words .ltr {
+  display: inline-block;
+  opacity: 0; transform: translateY(112%) rotate(5deg); filter: blur(9px);
+  animation: introLtr 0.95s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+@keyframes introLtr { to { opacity: 1; transform: none; filter: blur(0); } }
 
-/* 5 — tagline */
+/* ---- 6. accent rule draws under the wordmark ---- */
+.intro-rule {
+  width: clamp(90px, 16vw, 140px); height: 1px; margin-top: clamp(12px, 2vw, 18px);
+  background: linear-gradient(90deg, transparent, rgba(196,181,253,0.95), transparent);
+  transform: scaleX(0); animation: introRule 0.75s 3.00s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+@keyframes introRule { to { transform: scaleX(1); } }
+
+/* ---- 7. tagline ---- */
 .intro-tag {
-  margin-top: clamp(10px, 2vw, 16px);
+  margin-top: clamp(10px, 1.8vw, 15px);
   font-family: 'Inter', sans-serif;
   font-size: clamp(0.56rem, 1.5vw, 0.68rem);
   font-weight: 600; text-transform: uppercase;
-  color: rgba(255,255,255,0.62);
+  color: rgba(255,255,255,0.68);
   letter-spacing: 0.34em; text-indent: 0.34em;
-  opacity: 0; animation: introTag 0.8s 1.78s ease-out forwards;
+  opacity: 0; animation: introTag 1.0s 3.30s ease-out forwards;
 }
-@keyframes introTag { from { opacity: 0; letter-spacing: 0.18em; } to { opacity: 1; letter-spacing: 0.34em; } }
+@keyframes introTag { from { opacity: 0; letter-spacing: 0.16em; text-indent: 0.16em; } to { opacity: 1; letter-spacing: 0.34em; text-indent: 0.34em; } }
 
-/* 6 — light sweep across the board */
+/* ---- 8. specular sweep ---- */
 .intro-sweep {
-  position: absolute; top: 0; bottom: 0; width: 45%;
-  background: linear-gradient(100deg, transparent, rgba(255,255,255,0.13) 45%, rgba(196,181,253,0.20) 55%, transparent);
+  position: absolute; top: 0; bottom: 0; width: 42%;
+  background: linear-gradient(100deg, transparent, rgba(255,255,255,0.14) 44%, rgba(196,181,253,0.24) 56%, transparent);
   transform: skewX(-14deg); left: -60%;
-  animation: introSweep 1.05s 1.95s cubic-bezier(0.45,0,0.55,1) forwards;
+  animation: introSweep 1.25s 2.80s cubic-bezier(0.45,0,0.55,1) forwards;
 }
-@keyframes introSweep { to { left: 115%; } }
+@keyframes introSweep { to { left: 118%; } }
+
+/* ---- drifting light motes ---- */
+.intro-mote {
+  position: absolute; z-index: 2; border-radius: 50%;
+  background: rgba(196,181,253,0.75); pointer-events: none; opacity: 0;
+  animation: introMote linear forwards;
+}
+@keyframes introMote {
+  0%   { opacity: 0; transform: translateY(14px); }
+  22%  { opacity: 0.7; }
+  75%  { opacity: 0.5; }
+  100% { opacity: 0; transform: translateY(-46px); }
+}
 
 /* scanline texture */
 .intro-scan {
-  position: absolute; inset: 0; z-index: 3; pointer-events: none; opacity: 0.28;
+  position: absolute; inset: 0; z-index: 3; pointer-events: none; opacity: 0.26;
   background: repeating-linear-gradient(to bottom, rgba(255,255,255,0.035) 0 1px, transparent 1px 3px);
   mix-blend-mode: overlay;
 }
 
-/* exit curtains — these are the opaque backdrop; they split to reveal the site */
+/* letterbox bars */
+.intro-bar {
+  position: absolute; left: 0; right: 0; height: 10vh; background: #000; z-index: 4;
+}
+.intro-bar.t { top: 0;    transform: translateY(-100%); animation: introBarIn 0.8s 0.05s cubic-bezier(0.16,1,0.3,1) forwards; }
+.intro-bar.b { bottom: 0; transform: translateY(100%);  animation: introBarIn 0.8s 0.05s cubic-bezier(0.16,1,0.3,1) forwards; }
+@keyframes introBarIn { to { transform: translateY(0); } }
+
+/* exit curtains — the opaque backdrop that splits to reveal the site */
 .intro-curtain {
   position: absolute; left: 0; right: 0; height: 50.5%;
   background: #05051a; z-index: 0;
 }
 .intro-curtain.t { top: 0; }
 .intro-curtain.b { bottom: 0; }
-#hom-intro.is-out .intro-curtain.t { animation: curtainUp 0.85s cubic-bezier(0.76,0,0.24,1) forwards; }
-#hom-intro.is-out .intro-curtain.b { animation: curtainDown 0.85s cubic-bezier(0.76,0,0.24,1) forwards; }
-#hom-intro.is-out::before, #hom-intro.is-out .intro-scan { opacity: 0; transition: opacity 0.3s; }
+
+/* soft bloom at the cut (single, gentle — not a strobe) */
+.intro-bloom {
+  position: absolute; inset: 0; z-index: 4; pointer-events: none; opacity: 0;
+  background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(221,214,254,0.9), rgba(124,58,237,0.35) 45%, transparent 75%);
+}
+#hom-intro.is-out .intro-bloom { animation: introBloom 0.75s ease-out forwards; }
+@keyframes introBloom { 0% { opacity: 0; } 18% { opacity: 0.32; } 100% { opacity: 0; } }
+
+/* ---- exit ---- */
+#hom-intro.is-out .intro-curtain.t { animation: curtainUp   0.95s cubic-bezier(0.76,0,0.24,1) forwards; }
+#hom-intro.is-out .intro-curtain.b { animation: curtainDown 0.95s cubic-bezier(0.76,0,0.24,1) forwards; }
+#hom-intro.is-out .intro-bar.t     { animation: curtainUp   0.75s cubic-bezier(0.76,0,0.24,1) forwards; }
+#hom-intro.is-out .intro-bar.b     { animation: curtainDown 0.75s cubic-bezier(0.76,0,0.24,1) forwards; }
+#hom-intro.is-out::before, #hom-intro.is-out::after,
+#hom-intro.is-out .intro-scan { opacity: 0; transition: opacity 0.35s; }
 #hom-intro.is-out .intro-skip { opacity: 0; transition: opacity 0.2s; }
 @keyframes curtainUp   { to { transform: translateY(-100%); } }
 @keyframes curtainDown { to { transform: translateY(100%); } }
-/* when skipped early, kill the stage instantly */
-#hom-intro.is-out .intro-stage { animation: none; opacity: 0; transition: opacity 0.25s; }
+/* if skipped early, drop the stage immediately */
+#hom-intro.is-out .intro-stage { animation: none; opacity: 0; transform: scale(1.08); transition: opacity 0.3s, transform 0.5s; }
 
 /* skip */
 .intro-skip {
-  position: absolute; bottom: 26px; right: 26px; z-index: 5;
+  position: absolute; bottom: calc(10vh + 22px); right: 26px; z-index: 5;
   padding: 9px 18px; border-radius: 50px; cursor: pointer;
   background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.16);
   color: rgba(255,255,255,0.72); font-family: 'Inter', sans-serif;
   font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
-  opacity: 0; animation: introSkipIn 0.5s 1.0s ease-out forwards;
+  opacity: 0; animation: introSkipIn 0.6s 1.2s ease-out forwards;
   transition: background 0.2s, color 0.2s, border-color 0.2s;
 }
 .intro-skip:hover { background: rgba(124,58,237,0.35); border-color: rgba(167,139,250,0.5); color: #fff; }
 @keyframes introSkipIn { to { opacity: 1; } }
 
 @media (max-width: 560px) {
-  .intro-frame { height: min(300px, 62vw); }
-  .intro-skip { bottom: 18px; right: 18px; padding: 8px 15px; font-size: 0.66rem; }
+  .intro-frame { height: min(320px, 64vw); }
+  .intro-bar { height: 7vh; }
+  .intro-skip { bottom: calc(7vh + 16px); right: 18px; padding: 8px 15px; font-size: 0.66rem; }
   .intro-tag { letter-spacing: 0.24em; text-indent: 0.24em; }
-  @keyframes introTag { from { opacity: 0; letter-spacing: 0.14em; } to { opacity: 1; letter-spacing: 0.24em; } }
+  @keyframes introTag { from { opacity: 0; letter-spacing: 0.12em; text-indent: 0.12em; } to { opacity: 1; letter-spacing: 0.24em; text-indent: 0.24em; } }
+  /* keep the letter reveal cheap on phones */
+  .intro-words .ltr { filter: none; }
+  @keyframes introLtr { to { opacity: 1; transform: none; } }
+  .intro-flare { width: 300px; height: 300px; margin: -150px 0 0 -150px; }
 }
 
 /* ===== HERO ===== */
@@ -479,23 +606,32 @@ html.intro-lock, html.intro-lock body { overflow: hidden; height: 100%; }
 
 <!-- ===== CINEMATIC INTRO ===== -->
 <div id="hom-intro" aria-hidden="true">
+  <div class="intro-curtain t"></div>
+  <div class="intro-curtain b"></div>
   <div class="intro-stage">
+    <div class="intro-flare"></div>
     <div class="intro-line"></div>
+    <div class="intro-board">
     <div class="intro-frame">
       <i class="tl"></i><i class="tr"></i><i class="bl"></i><i class="br"></i>
-      <img src="Logo/HOM Logo White.png" class="intro-logo" alt="" width="52" height="52">
+      <img src="Logo/HOM Logo White.png" class="intro-logo" alt="" width="56" height="56">
       <div class="intro-words">
         <div class="iw"><span>HLOPHE</span></div>
         <div class="iw"><span>OUTDOOR</span></div>
         <div class="iw"><span>MEDIA</span></div>
       </div>
-      <div class="intro-tag">OOH Advertising · Gauteng</div>
+      <div class="intro-rule"></div>
+      <div class="intro-tag">OOH Advertising &middot; Gauteng</div>
       <div class="intro-sweep"></div>
     </div>
+    <div class="intro-legs"><span class="l"></span><span class="r"></span><b></b></div>
+    </div>
+    <div class="intro-traffic"></div>
   </div>
   <div class="intro-scan"></div>
-  <div class="intro-curtain t"></div>
-  <div class="intro-curtain b"></div>
+  <div class="intro-bloom"></div>
+  <div class="intro-bar t"></div>
+  <div class="intro-bar b"></div>
   <button class="intro-skip" type="button">Skip</button>
 </div>
 <script>
@@ -508,6 +644,48 @@ html.intro-lock, html.intro-lock body { overflow: hidden; height: 100%; }
 
   try { sessionStorage.setItem('hom_intro_seen', '1'); } catch (e) {}
 
+  /* split the wordmark into per-letter spans with a staggered reveal */
+  var lineDelay = [1.95, 2.10, 2.25];
+  el.querySelectorAll('.intro-words .iw > span').forEach(function (span, li) {
+    var text = span.textContent, out = '';
+    for (var i = 0; i < text.length; i++) {
+      out += '<span class="ltr" style="animation-delay:' +
+             (lineDelay[li] + i * 0.042).toFixed(3) + 's">' + text[i] + '</span>';
+    }
+    span.innerHTML = out;
+  });
+
+  /* drifting light motes */
+  var stage = el.querySelector('.intro-stage');
+  for (var m = 0; m < 14; m++) {
+    var d = document.createElement('span');
+    var size = (Math.random() * 2.2 + 1).toFixed(1);
+    d.className = 'intro-mote';
+    d.style.cssText =
+      'width:' + size + 'px;height:' + size + 'px;' +
+      'left:' + (Math.random() * 100).toFixed(2) + '%;' +
+      'top:'  + (35 + Math.random() * 40).toFixed(2) + '%;' +
+      'animation-duration:' + (3 + Math.random() * 2.5).toFixed(2) + 's;' +
+      'animation-delay:' + (0.9 + Math.random() * 2).toFixed(2) + 's;';
+    stage.appendChild(d);
+  }
+
+  /* long-exposure traffic streaks passing under the board */
+  var road = el.querySelector('.intro-traffic');
+  for (var t = 0; t < 15; t++) {
+    var sk = document.createElement('span');
+    var tail = Math.random() < 0.45;
+    sk.className = 'streak ' + (tail ? 'tl' : 'hl');
+    sk.style.cssText =
+      'width:' + (130 + Math.random() * 220).toFixed(0) + 'px;' +
+      'height:' + (Math.random() < 0.3 ? 3 : 2) + 'px;' +
+      'top:' + (8 + Math.random() * 80).toFixed(1) + '%;' +
+      'opacity:' + (0.6 + Math.random() * 0.4).toFixed(2) + ';' +
+      'animation-duration:' + (1.3 + Math.random() * 2.0).toFixed(2) + 's;' +
+      'animation-delay:' + (Math.random() * 2.0).toFixed(2) + 's;';
+    road.appendChild(sk);
+  }
+
   var done = false;
   function finish() {
     if (done) return; done = true;
@@ -516,10 +694,10 @@ html.intro-lock, html.intro-lock body { overflow: hidden; height: 100%; }
     setTimeout(function () {
       if (el.parentNode) el.parentNode.removeChild(el);
       root.classList.remove('intro-on');
-    }, 900);
+    }, 1000);
   }
 
-  var timer = setTimeout(finish, 3050);
+  var timer = setTimeout(finish, 4350);
   function skip(){ clearTimeout(timer); finish(); }
 
   el.querySelector('.intro-skip').addEventListener('click', skip);
@@ -527,7 +705,7 @@ html.intro-lock, html.intro-lock body { overflow: hidden; height: 100%; }
     if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') skip();
   });
   /* Safety net: never leave the site covered if an animation stalls */
-  setTimeout(function(){ if (!done) finish(); }, 6000);
+  setTimeout(function(){ if (!done) finish(); }, 8000);
 })();
 </script>
 
