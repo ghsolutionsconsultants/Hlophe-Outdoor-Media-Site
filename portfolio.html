@@ -12,6 +12,14 @@
 <meta property="og:title" content="Portfolio | Hlophe Outdoor Media">
 <meta property="og:description" content="Live OOH inventory dashboard + full site network across Gauteng — specs, locations, audience and availability.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://hlophemedia.co.za/portfolio.html">
+<meta property="og:image" content="https://hlophemedia.co.za/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Hlophe Outdoor Media">
+<meta property="og:locale" content="en_ZA">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://hlophemedia.co.za/og-image.jpg">
 <link rel="stylesheet" href="css/style.css">
 <style>
 /* ============================================================
@@ -153,6 +161,7 @@
 @keyframes cardIn { to { opacity: 1; transform: none; } }
 .site-card:hover { border-color: rgba(124,58,237,0.42); transform: translateY(-5px); box-shadow: 0 18px 44px rgba(0,0,0,0.4); }
 .sc-media { position: relative; aspect-ratio: 16/10; overflow: hidden; background: #0c0c22; }
+.sc-media picture { display: contents; }
 .sc-media img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s var(--ease-spring); }
 .site-card:hover .sc-media img { transform: scale(1.06); }
 .sc-media::after { content: ''; position: absolute; inset: 0;
@@ -195,10 +204,12 @@
 .sm-panel::-webkit-scrollbar { width: 8px; }
 .sm-panel::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.14); border-radius: 8px; }
 .sm-visual { padding: 22px; display: flex; flex-direction: column; gap: 12px; }
+#sm-main-wrap picture { display: contents; }
 .sm-main-img { width: 100%; border-radius: var(--r-md); aspect-ratio: 16/11; object-fit: cover; background: #0c0c22; display: block; }
 .sm-thumbs { display: flex; gap: 10px; }
 .sm-thumb { flex: 1; border-radius: 10px; overflow: hidden; cursor: pointer; border: 1.5px solid transparent; aspect-ratio: 16/10; background: #0c0c22; transition: border-color 0.2s; }
 .sm-thumb.active { border-color: var(--accent); }
+.sm-thumb picture { display: contents; }
 .sm-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .sm-thumb-label { font-size: 0.6rem; text-align: center; color: var(--t3); padding: 4px 0 0; letter-spacing: 0.06em; text-transform: uppercase; }
 .sm-info { padding: 30px 30px 30px 8px; display: flex; flex-direction: column; }
@@ -220,6 +231,7 @@
 .spec-cell .s-value { font-size: 0.9rem; font-weight: 600; color: var(--t1); }
 .spec-cell .s-value.hl { color: var(--accent-pale); font-weight: 700; }
 .sm-map-wrap { position: relative; border-radius: var(--r-md); overflow: hidden; margin-bottom: 20px; border: 1px solid var(--border-dim); }
+.sm-map-wrap picture { display: contents; }
 .sm-map-wrap img { width: 100%; display: block; max-height: 180px; object-fit: cover; }
 .sm-map-link { position: absolute; bottom: 12px; right: 12px; display: inline-flex; align-items: center; gap: 7px;
   padding: 9px 15px; border-radius: 50px; background: rgba(5,5,26,0.78); backdrop-filter: blur(10px);
@@ -389,7 +401,7 @@
   <div class="container">
 
     <div class="section-header" style="margin-bottom:36px;">
-      <div class="section-label reveal"><span class="dot"></span>Site Network</div>
+      <div data-n="01" class="section-label reveal"><span class="dot"></span>Site Network</div>
       <h2 class="section-heading reveal d-100">Browse <em>Every Site</em></h2>
       <p class="section-body reveal d-200">Filter by area, search by name or code, and open any site for full specs, location map and availability.</p>
     </div>
@@ -490,6 +502,7 @@
 
 <script src="js/main.js"></script>
 <script src="js/sites-data.js"></script>
+<script src="js/img-manifest.js"></script>
 <script>
 /* ============================================================
    DASHBOARD widgets — aggregate + render from window.HOM_SITES
@@ -613,6 +626,20 @@
 (function () {
   'use strict';
   var ASSET = 'portfolio-assets/';
+
+  /* Build a responsive <picture> from the generated WebP manifest.
+     Falls back to the original JPEG wherever a variant is missing. */
+  function pic(jpgPath, alt, sizes, cls, lazy) {
+    var base = jpgPath.replace(/\.[^.]+$/, '');
+    var dir  = base.slice(0, base.lastIndexOf('/') + 1);
+    var set  = (window.HOM_IMG && window.HOM_IMG[base]) || [];
+    var srcset = set.map(function (v) { return dir + v[1] + ' ' + v[0] + 'w'; }).join(', ');
+    return '<picture>' +
+      (srcset ? '<source type="image/webp" srcset="' + srcset + '" sizes="' + sizes + '">' : '') +
+      '<img src="' + jpgPath + '" alt="' + alt + '"' +
+      (cls ? ' class="' + cls + '"' : '') + (lazy ? ' loading="lazy" decoding="async"' : '') + '>' +
+      '</picture>';
+  }
   var SITES = window.HOM_SITES || [];
   var SUSPECT_TRAFFIC = window.HOM_SUSPECT_TRAFFIC;
 
@@ -679,7 +706,7 @@
           '<span class="sc-code">' + s.code + '</span>' +
           '<span class="sc-avail"><span class="pulse-dot"></span>Available</span>' +
           '<span class="sc-fmt">' + fmtSvg + s.format.replace(/\s*\(.*\)/, '') + '</span>' +
-          '<img src="' + ASSET + s.slug + '/' + s.photos[0] + '" alt="' + s.name + ' — Hlophe Outdoor Media site" loading="lazy">' +
+          pic(ASSET + s.slug + '/' + s.photos[0], s.name + ' — Hlophe Outdoor Media site', '(max-width:600px) 100vw, (max-width:1100px) 50vw, 33vw', '', true) +
         '</div>' +
         '<div class="sc-body">' +
           '<h3 class="sc-name">' + s.name + '</h3>' +
@@ -735,11 +762,11 @@
     var thumbs = '';
     if (gallery.length > 1) {
       thumbs = '<div class="sm-thumbs">' + gallery.map(function (g, i) {
-        return '<div><div class="sm-thumb' + (i === 0 ? ' active' : '') + '" data-img="' + g + '"><img src="' + g + '" alt="' + labels[i] + '"></div>' +
+        return '<div><div class="sm-thumb' + (i === 0 ? ' active' : '') + '" data-img="' + g + '">' + pic(g, labels[i], '25vw', '', true) + '</div>' +
           '<div class="sm-thumb-label">' + labels[i] + '</div></div>';
       }).join('') + '</div>';
     }
-    smVisual.innerHTML = '<img class="sm-main-img" id="sm-main-img" src="' + gallery[0] + '" alt="' + s.name + '">' + thumbs;
+    smVisual.innerHTML = '<div id="sm-main-wrap">' + pic(gallery[0], s.name, '(max-width:900px) 100vw, 55vw', 'sm-main-img', false) + '</div>' + thumbs;
 
     var trafficVal = isSuspect(s)
       ? 'High-traffic corridor <span style="color:var(--t3);font-weight:500;font-size:0.78rem;">(figure being verified)</span>'
@@ -759,7 +786,7 @@
     if (s.map && s.gps) {
       mapBlock =
         '<div class="sm-map-wrap">' +
-          '<img src="' + ASSET + s.slug + '/' + s.map + '" alt="Location map for ' + s.name + '">' +
+          pic(ASSET + s.slug + '/' + s.map, 'Location map for ' + s.name, '(max-width:900px) 100vw, 55vw', '', true) +
           '<a class="sm-map-link" href="' + mapsUrl(s.gps) + '" target="_blank" rel="noopener">' + extSvg + 'Open in Google Maps</a>' +
         '</div>' +
         '<div class="spec-cell full" style="border:1px solid var(--border-dim);border-radius:var(--r-md);margin-bottom:18px;">' +
@@ -784,7 +811,8 @@
 
     smVisual.querySelectorAll('.sm-thumb').forEach(function (t) {
       t.addEventListener('click', function () {
-        document.getElementById('sm-main-img').src = t.dataset.img;
+        document.getElementById('sm-main-wrap').innerHTML =
+          pic(t.dataset.img, s.name, '(max-width:900px) 100vw, 55vw', 'sm-main-img', false);
         smVisual.querySelectorAll('.sm-thumb').forEach(function (x) { x.classList.remove('active'); });
         t.classList.add('active');
       });

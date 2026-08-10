@@ -211,11 +211,34 @@ section { position: relative; z-index: 1; overflow-x: hidden; }
 }
 
 .divider {
+  position: relative;
   height: 1px;
   background: linear-gradient(to right, transparent, var(--border-dim), transparent);
   max-width: var(--max-w);
   margin: 0 auto;
 }
+/* Halftone dot screen blooming off each divider — a nod to the dot
+   pattern of printed billboard vinyl. Bespoke to an OOH brand. */
+.divider::before {
+  content: ''; position: absolute; left: 0; right: 0; top: -15px; height: 30px;
+  pointer-events: none;
+  background-image: radial-gradient(rgba(167,139,250,0.22) 1px, transparent 1.4px);
+  background-size: 8px 8px;
+  -webkit-mask-image: radial-gradient(ellipse 52% 100% at 50% 50%, #000 0%, transparent 78%);
+          mask-image: radial-gradient(ellipse 52% 100% at 50% 50%, #000 0%, transparent 78%);
+}
+
+/* Editorial numbered section markers */
+.section-label[data-n]::before {
+  content: attr(data-n);
+  font-variant-numeric: tabular-nums;
+  font-size: 0.68rem; font-weight: 800; letter-spacing: 0.06em;
+  color: var(--accent-light);
+  padding-right: 9px;
+  border-right: 1px solid rgba(167,139,250,0.38);
+}
+.section-label[data-n] .dot { display: none; }
+.section-label[data-n] { padding-left: 13px; gap: 9px; }
 
 /* ============================================================
    SCROLL REVEAL
