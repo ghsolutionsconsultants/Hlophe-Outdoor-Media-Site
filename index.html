@@ -15,7 +15,180 @@
 <meta property="og:url" content="https://hlophemedia.co.za/">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="css/style.css">
+
+<!-- Decide before first paint: skip intro if already seen this session or reduced-motion -->
+<script>
+(function(){
+  try{
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var seen   = sessionStorage.getItem('hom_intro_seen');
+    if(!reduce && !seen){ document.documentElement.className += ' intro-on intro-lock'; }
+  }catch(e){}
+})();
+</script>
+
 <style>
+/* ============================================================
+   CINEMATIC INTRO — "the board lights up"
+   Hidden unless JS opts in, so no-JS users are never blocked.
+   ============================================================ */
+#hom-intro { display: none; }
+html.intro-on #hom-intro { display: block; }
+html.intro-lock, html.intro-lock body { overflow: hidden; height: 100%; }
+
+#hom-intro {
+  position: fixed; inset: 0; z-index: 99999;
+  background: transparent;          /* the curtains provide the opaque backdrop */
+  overflow: hidden;
+  font-family: 'Syne', sans-serif;
+}
+/* ambient glow behind the board */
+#hom-intro::before {
+  content: ''; position: absolute; inset: 0; z-index: 1;
+  background:
+    radial-gradient(ellipse 60% 45% at 50% 50%, rgba(124,58,237,0.18) 0%, transparent 70%),
+    radial-gradient(ellipse 90% 60% at 50% 120%, rgba(109,40,217,0.12) 0%, transparent 70%);
+  opacity: 0; animation: introGlow 1.2s 0.45s ease-out forwards;
+}
+@keyframes introGlow { to { opacity: 1; } }
+
+.intro-stage {
+  position: absolute; inset: 0; z-index: 2;
+  display: flex; align-items: center; justify-content: center;
+  animation: introPush 0.9s 2.55s cubic-bezier(0.7,0,0.84,0) forwards;
+}
+@keyframes introPush { to { transform: scale(1.14); opacity: 0; } }
+
+/* 1 — the ignition line */
+.intro-line {
+  position: absolute; top: 50%; left: 0; right: 0; margin: 0 auto;
+  width: min(620px, 80vw); height: 2px;
+  background: linear-gradient(90deg, transparent, #a78bfa 22%, #fff 50%, #a78bfa 78%, transparent);
+  box-shadow: 0 0 28px rgba(167,139,250,0.85);
+  transform: scaleX(0); transform-origin: center;
+  animation: introIgnite 0.72s cubic-bezier(0.16,1,0.3,1) forwards,
+             introLineOut 0.45s 0.78s ease-out forwards;
+}
+@keyframes introIgnite { 0% { transform: scaleX(0); opacity: 0; } 18% { opacity: 1; } 100% { transform: scaleX(1); opacity: 1; } }
+@keyframes introLineOut { to { opacity: 0; } }
+
+/* 2 — the board opens */
+.intro-frame {
+  position: relative;
+  width: min(620px, 80vw);
+  height: min(340px, 46vw);
+  border: 1px solid rgba(167,139,250,0.30);
+  border-radius: 4px;
+  background: linear-gradient(160deg, rgba(124,58,237,0.10), rgba(255,255,255,0.02) 60%, transparent);
+  box-shadow: 0 0 60px rgba(124,58,237,0.22), inset 0 1px 0 rgba(255,255,255,0.10);
+  clip-path: inset(50% 0 50% 0);
+  animation: introOpen 0.8s 0.58s cubic-bezier(0.16,1,0.3,1) forwards;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+@keyframes introOpen { to { clip-path: inset(0 0 0 0); } }
+
+/* corner ticks */
+.intro-frame i {
+  position: absolute; width: 14px; height: 14px;
+  border: 0 solid rgba(196,181,253,0.85);
+  opacity: 0; animation: introTick 0.5s 1.25s ease-out forwards;
+}
+.intro-frame i.tl { top: 9px; left: 9px;  border-top-width: 1.5px; border-left-width: 1.5px; }
+.intro-frame i.tr { top: 9px; right: 9px; border-top-width: 1.5px; border-right-width: 1.5px; }
+.intro-frame i.bl { bottom: 9px; left: 9px;  border-bottom-width: 1.5px; border-left-width: 1.5px; }
+.intro-frame i.br { bottom: 9px; right: 9px; border-bottom-width: 1.5px; border-right-width: 1.5px; }
+@keyframes introTick { to { opacity: 1; } }
+
+/* 3 — logo */
+.intro-logo {
+  width: clamp(38px, 7vw, 52px); height: auto; display: block;
+  margin-bottom: clamp(12px, 2.2vw, 20px);
+  opacity: 0; transform: translateY(10px) scale(0.9);
+  animation: introLogo 0.7s 1.05s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+@keyframes introLogo { to { opacity: 1; transform: none; } }
+
+/* 4 — wordmark, masked line-by-line */
+.intro-words { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.intro-words .iw { overflow: hidden; }
+.intro-words .iw span {
+  display: block;
+  font-size: clamp(1.35rem, 4.6vw, 2.5rem);
+  font-weight: 800; letter-spacing: 0.06em; line-height: 1.08;
+  color: rgba(255,255,255,0.97);
+  transform: translateY(110%);
+  animation: introWord 0.72s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+.intro-words .iw:nth-child(1) span { animation-delay: 1.20s; }
+.intro-words .iw:nth-child(2) span { animation-delay: 1.32s; }
+.intro-words .iw:nth-child(3) span { animation-delay: 1.44s; color: var(--accent-pale, #c4b5fd); }
+@keyframes introWord { to { transform: translateY(0); } }
+
+/* 5 — tagline */
+.intro-tag {
+  margin-top: clamp(10px, 2vw, 16px);
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(0.56rem, 1.5vw, 0.68rem);
+  font-weight: 600; text-transform: uppercase;
+  color: rgba(255,255,255,0.62);
+  letter-spacing: 0.34em; text-indent: 0.34em;
+  opacity: 0; animation: introTag 0.8s 1.78s ease-out forwards;
+}
+@keyframes introTag { from { opacity: 0; letter-spacing: 0.18em; } to { opacity: 1; letter-spacing: 0.34em; } }
+
+/* 6 — light sweep across the board */
+.intro-sweep {
+  position: absolute; top: 0; bottom: 0; width: 45%;
+  background: linear-gradient(100deg, transparent, rgba(255,255,255,0.13) 45%, rgba(196,181,253,0.20) 55%, transparent);
+  transform: skewX(-14deg); left: -60%;
+  animation: introSweep 1.05s 1.95s cubic-bezier(0.45,0,0.55,1) forwards;
+}
+@keyframes introSweep { to { left: 115%; } }
+
+/* scanline texture */
+.intro-scan {
+  position: absolute; inset: 0; z-index: 3; pointer-events: none; opacity: 0.28;
+  background: repeating-linear-gradient(to bottom, rgba(255,255,255,0.035) 0 1px, transparent 1px 3px);
+  mix-blend-mode: overlay;
+}
+
+/* exit curtains — these are the opaque backdrop; they split to reveal the site */
+.intro-curtain {
+  position: absolute; left: 0; right: 0; height: 50.5%;
+  background: #05051a; z-index: 0;
+}
+.intro-curtain.t { top: 0; }
+.intro-curtain.b { bottom: 0; }
+#hom-intro.is-out .intro-curtain.t { animation: curtainUp 0.85s cubic-bezier(0.76,0,0.24,1) forwards; }
+#hom-intro.is-out .intro-curtain.b { animation: curtainDown 0.85s cubic-bezier(0.76,0,0.24,1) forwards; }
+#hom-intro.is-out::before, #hom-intro.is-out .intro-scan { opacity: 0; transition: opacity 0.3s; }
+#hom-intro.is-out .intro-skip { opacity: 0; transition: opacity 0.2s; }
+@keyframes curtainUp   { to { transform: translateY(-100%); } }
+@keyframes curtainDown { to { transform: translateY(100%); } }
+/* when skipped early, kill the stage instantly */
+#hom-intro.is-out .intro-stage { animation: none; opacity: 0; transition: opacity 0.25s; }
+
+/* skip */
+.intro-skip {
+  position: absolute; bottom: 26px; right: 26px; z-index: 5;
+  padding: 9px 18px; border-radius: 50px; cursor: pointer;
+  background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.16);
+  color: rgba(255,255,255,0.72); font-family: 'Inter', sans-serif;
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+  opacity: 0; animation: introSkipIn 0.5s 1.0s ease-out forwards;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+.intro-skip:hover { background: rgba(124,58,237,0.35); border-color: rgba(167,139,250,0.5); color: #fff; }
+@keyframes introSkipIn { to { opacity: 1; } }
+
+@media (max-width: 560px) {
+  .intro-frame { height: min(300px, 62vw); }
+  .intro-skip { bottom: 18px; right: 18px; padding: 8px 15px; font-size: 0.66rem; }
+  .intro-tag { letter-spacing: 0.24em; text-indent: 0.24em; }
+  @keyframes introTag { from { opacity: 0; letter-spacing: 0.14em; } to { opacity: 1; letter-spacing: 0.24em; } }
+}
+
 /* ===== HERO ===== */
 #hero {
   position: relative; min-height: 100vh; z-index: 1;
@@ -303,6 +476,61 @@
 </script>
 </head>
 <body>
+
+<!-- ===== CINEMATIC INTRO ===== -->
+<div id="hom-intro" aria-hidden="true">
+  <div class="intro-stage">
+    <div class="intro-line"></div>
+    <div class="intro-frame">
+      <i class="tl"></i><i class="tr"></i><i class="bl"></i><i class="br"></i>
+      <img src="Logo/HOM Logo White.png" class="intro-logo" alt="" width="52" height="52">
+      <div class="intro-words">
+        <div class="iw"><span>HLOPHE</span></div>
+        <div class="iw"><span>OUTDOOR</span></div>
+        <div class="iw"><span>MEDIA</span></div>
+      </div>
+      <div class="intro-tag">OOH Advertising · Gauteng</div>
+      <div class="intro-sweep"></div>
+    </div>
+  </div>
+  <div class="intro-scan"></div>
+  <div class="intro-curtain t"></div>
+  <div class="intro-curtain b"></div>
+  <button class="intro-skip" type="button">Skip</button>
+</div>
+<script>
+(function(){
+  var el = document.getElementById('hom-intro');
+  if (!el) return;
+  var root = document.documentElement;
+  /* Not opted in (already seen / reduced motion / no JS path) — drop it entirely */
+  if (!root.classList.contains('intro-on')) { el.parentNode.removeChild(el); return; }
+
+  try { sessionStorage.setItem('hom_intro_seen', '1'); } catch (e) {}
+
+  var done = false;
+  function finish() {
+    if (done) return; done = true;
+    el.classList.add('is-out');
+    root.classList.remove('intro-lock');           /* free the scroll immediately */
+    setTimeout(function () {
+      if (el.parentNode) el.parentNode.removeChild(el);
+      root.classList.remove('intro-on');
+    }, 900);
+  }
+
+  var timer = setTimeout(finish, 3050);
+  function skip(){ clearTimeout(timer); finish(); }
+
+  el.querySelector('.intro-skip').addEventListener('click', skip);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') skip();
+  });
+  /* Safety net: never leave the site covered if an animation stalls */
+  setTimeout(function(){ if (!done) finish(); }, 6000);
+})();
+</script>
+
 <div class="bg-ambient"></div>
 
 <!-- MOBILE MENU -->
