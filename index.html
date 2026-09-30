@@ -21,6 +21,7 @@
 <meta name="twitter:image" content="https://hlophemedia.co.za/og-image.jpg">
 <meta property="og:url" content="https://hlophemedia.co.za/">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/motion.css">
 
 <!-- Decide before first paint: skip intro if already seen this session or reduced-motion -->
 <script>
@@ -752,7 +753,7 @@ html.intro-lock, html.intro-lock body { overflow: hidden; height: 100%; }
 
 <!-- HERO -->
 <section id="hero" aria-label="Hero">
-  <picture><source type="image/webp" srcset="gallery/hero-billboard-480.webp 480w, gallery/hero-billboard-960.webp 960w, gallery/hero-billboard-1600.webp 1600w" sizes="100vw"><img id="hero-bg-img" src="gallery/hero-billboard.jpg" alt="" aria-hidden="true"></picture>
+  <picture><source type="image/webp" srcset="gallery/hero-billboard-480.webp 480w, gallery/hero-billboard-960.webp 960w, gallery/hero-billboard-1600.webp 1600w" sizes="100vw"><img id="hero-bg-img" data-par="0.12" src="gallery/hero-billboard.jpg" alt="" aria-hidden="true"></picture>
   <div id="hero-grade" aria-hidden="true"></div>
   <div id="hero-vignette" aria-hidden="true"></div>
   <div id="hero-accent" aria-hidden="true"></div>
@@ -802,7 +803,7 @@ html.intro-lock, html.intro-lock body { overflow: hidden; height: 100%; }
 <!-- STATS -->
 <div style="position:relative;z-index:1;padding:0 var(--gutter);margin-top:-40px;" class="reveal">
   <div style="max-width:var(--max-w);margin:0 auto;">
-    <div class="stats-grid">
+    <div class="stats-grid" data-stagger="0.08">
       <div class="stat-card">
         <div class="stat-value" data-counter data-target="10" data-suffix="+">10+</div>
         <div class="stat-label">Major Brands Served</div>
@@ -835,7 +836,7 @@ html.intro-lock, html.intro-lock body { overflow: hidden; height: 100%; }
       <h2 class="section-heading reveal d-100">Four Ways to Own <em>Your Market</em></h2>
       <p class="section-body reveal d-200">Whether you need mass reach, intimate community presence, or high-frequency digital visibility, we have the format. Most clients combine two or more for compounding impact.</p>
     </div>
-    <div class="services-grid">
+    <div class="services-grid" data-stagger="0.08">
 
       <!-- Billboard -->
       <div class="svc-card glass reveal d-100" data-tilt>
@@ -907,7 +908,7 @@ html.intro-lock, html.intro-lock body { overflow: hidden; height: 100%; }
       <h2 class="section-heading reveal d-100">The Gap Other Agencies <em>Can't Close</em></h2>
       <p class="section-body reveal d-200">Township South Africa is the fastest-growing consumer market in the country. Most agencies know it exists. Very few actually operate inside it. We do, and that changes everything for your brand.</p>
     </div>
-    <div class="why-grid">
+    <div class="why-grid" data-stagger="0.08">
       <div class="why-card glass reveal d-100">
         <div class="icon-wrap icon-wrap-lg icon-wrap-circle">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2" fill="currentColor" stroke="none"/></svg>
@@ -948,7 +949,7 @@ html.intro-lock, html.intro-lock body { overflow: hidden; height: 100%; }
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
     </div>
-    <div class="work-grid reveal">
+    <div class="work-grid reveal" data-stagger="0.08">
       <div class="work-item">
         <picture><source type="image/webp" srcset="gallery/billboard-jabulani-480.webp 480w, gallery/billboard-jabulani-960.webp 960w" sizes="(max-width:900px) 100vw, 33vw"><img src="gallery/billboard-jabulani.jpeg" alt="Static billboard at Jabulani Gate, Soweto — Hlophe Outdoor Media" loading="lazy"></picture>
         <div class="work-item-overlay">
@@ -971,7 +972,8 @@ html.intro-lock, html.intro-lock body { overflow: hidden; height: 100%; }
   </div>
 </section>
 
-<div class="divider"></div>
+<!-- STRAPLINE TICKER -->
+<div data-ticker="Township Reach | Real Audiences | 15 Premium Sites | Gauteng &amp; National | Built In Soweto | Measured, Not Guessed"></div>
 
 <!-- CTA BANNER -->
 <section class="section-pad">
@@ -1055,5 +1057,6 @@ html.intro-lock, html.intro-lock body { overflow: hidden; height: 100%; }
 </div>
 
 <script src="js/main.js"></script>
+<script src="js/motion.js"></script>
 </body>
 </html>

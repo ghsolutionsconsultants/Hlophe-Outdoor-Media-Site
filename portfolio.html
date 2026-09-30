@@ -21,6 +21,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://hlophemedia.co.za/og-image.jpg">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/motion.css">
 <style>
 /* ============================================================
    PORTFOLIO — DASHBOARD + LIVE SITE NETWORK
@@ -383,7 +384,7 @@
     <div class="dash-grid">
       <div class="widget glass w-6">
         <div class="widget-head"><div class="widget-title">Regional coverage</div><span class="widget-badge" id="cov-badge"></span></div>
-        <div class="cov-grid" id="cov-grid"></div>
+        <div class="cov-grid" id="cov-grid" data-stagger="0.08"></div>
       </div>
       <div class="widget glass w-6">
         <div class="widget-head"><div class="widget-title">Largest advertising surfaces</div><span class="widget-badge">Top 5 · m²</span></div>
@@ -501,6 +502,7 @@
 </div>
 
 <script src="js/main.js"></script>
+<script src="js/motion.js"></script>
 <script src="js/sites-data.js"></script>
 <script src="js/img-manifest.js"></script>
 <script>
@@ -732,6 +734,7 @@
     grid.innerHTML = list.map(cardHtml).join('');
     resultCount.innerHTML = 'Showing <b>' + list.length + '</b> of ' + SITES.length + ' sites' +
       (activeRegion !== 'All' ? ' in <b>' + activeRegion + '</b>' : '');
+    if (window.HOMMotion) window.HOMMotion.refresh();
     grid.querySelectorAll('.site-card').forEach(function (card) {
       card.addEventListener('click', function () { openModal(card.dataset.slug); });
       card.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openModal(card.dataset.slug); } });
