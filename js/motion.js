@@ -143,6 +143,91 @@
         child.style.transitionDelay = (i * step).toFixed(3) + 's';
       });
     });
+
+    wireReveals();
+  }
+
+  /* ------------------------------------------------------------------
+     Reveal wiring.
+
+     Two things make this fragile, so it is written to be idempotent and
+     re-runnable:
+
+     1. main.js builds its reveal observer while the document is still
+        parsing, so anything tagged .reveal afterwards (everything
+        autoStagger touches) is never observed by it.
+     2. On the homepage the intro holds `html.intro-lock { overflow:hidden;
+        height:100% }`, which clamps the document to one viewport. An
+        observer created during that window never recovers once the lock
+        lifts, leaving whole grids stuck at opacity:0.
+
+     An IntersectionObserver is the obvious tool here, but observers created
+     while the viewport is still settling (during the intro lock, or before
+     the pane has a stable size) silently never deliver — leaving whole
+     sections stuck at opacity:0. So reveals are driven by plain geometry
+     inside the shared rAF scroll loop instead: deterministic, no observer
+     lifecycle to go wrong, and cheap at this element count.
+     ------------------------------------------------------------------ */
+  var pendingReveals = [];
+
+  function collectReveals() {
+    pendingReveals = $$('.reveal, .reveal-left, .reveal-right, .reveal-scale')
+                       .filter(function (e) { return !e.classList.contains('is-visible'); });
+  }
+
+  function checkReveals() {
+    if (!pendingReveals.length) return;
+    var h = window.innerHeight || doc.documentElement.clientHeight || 800;
+    for (var i = pendingReveals.length - 1; i >= 0; i--) {
+      var e = pendingReveals[i], r = e.getBoundingClientRect();
+      if (r.width === 0 && r.height === 0) continue;          // not laid out yet
+      if (r.top < h * 0.94 && r.bottom > -40) {
+        e.classList.add('is-visible');
+        pendingReveals.splice(i, 1);
+      }
+    }
+  }
+
+  function wireReveals() { collectReveals(); checkReveals(); }
+
+  /* Keep the pending list fresh: after the intro releases its scroll lock,
+     and on a couple of early ticks while fonts/images settle the layout. */
+  function watchLock() {
+    onScrollAdd(checkReveals);          // evaluated in the shared rAF loop
+    /* ...and again straight off the scroll event. rAF can be throttled
+       (background tab, idle renderer); content must never be left hidden
+       because a frame callback didn't run. The list only shrinks, so this
+       costs a handful of rect reads and then nothing. */
+    window.addEventListener('scroll', checkReveals, { passive: true });
+    window.addEventListener('resize', checkReveals, { passive: true });
+    wireReveals();
+
+    /* Correctness must not depend on scroll events or rAF firing — some
+       embedded/automated renderers deliver neither. A cheap poll guarantees
+       anything that scrolls into view is shown, and retires itself once
+       everything has been revealed. */
+    var polls = 0;
+    var poll = setInterval(function () {
+      collectReveals();
+      checkReveals();
+      if (++polls > 120 || !pendingReveals.length) clearInterval(poll);   // ~42s cap
+    }, 350);
+
+    /* Absolute last resort: nothing stays invisible, whatever happened. */
+    setTimeout(function () {
+      $$('.reveal, .reveal-left, .reveal-right, .reveal-scale')
+        .forEach(function (e) { e.classList.add('is-visible'); });
+      clearInterval(poll);
+    }, 45000);
+
+    if (root.classList.contains('intro-lock') && window.MutationObserver) {
+      var mo = new MutationObserver(function () {
+        if (!root.classList.contains('intro-lock')) { mo.disconnect(); setTimeout(wireReveals, 60); }
+      });
+      mo.observe(root, { attributes: true, attributeFilter: ['class'] });
+    }
+    [300, 1200, 2500].forEach(function (t) { setTimeout(wireReveals, t); });
+    window.addEventListener('load', wireReveals);
   }
 
   /* ============================================================
@@ -301,6 +386,7 @@
     try { navPill(); }      catch (e) {}
     try { ticker(); }       catch (e) {}
     try { pageVeil(); }     catch (e) {}
+    try { watchLock(); }    catch (e) {}
     if (readers.length) {
       window.addEventListener('scroll', onScroll, { passive: true });
       window.addEventListener('resize', onScroll, { passive: true });
@@ -317,6 +403,7 @@
     refresh: function () {
       try { spotlight(); } catch (e) {}
       try { imageReveals(); } catch (e) {}
+      try { wireReveals(); } catch (e) {}
     }
   };
 })();
